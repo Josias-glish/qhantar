@@ -780,5 +780,69 @@
    ]
   }
  },
- "h1": null
+ "h1": {
+  "hypothesis": "Pixels flagged as layover or shadow have lower median coherence and a higher fraction of connected component 0 than geometrically valid pixels.",
+  "groups": {
+   "layover_or_shadow": {
+    "n_pixels": 54612,
+    "coherence_median": 0.557232677936554,
+    "coherence_iqr": [
+     0.31926876306533813,
+     0.7474733591079712
+    ],
+    "coherence_missing_fraction": 0.00025635391489053916,
+    "invalid_component_fraction": 0.20191532996411046
+   },
+   "layover_only": {
+    "n_pixels": 53832,
+    "coherence_median": 0.562963604927063,
+    "coherence_iqr": [
+     0.32756564021110535,
+     0.7500879764556885
+    ],
+    "coherence_missing_fraction": 0.00026006836082625995,
+    "invalid_component_fraction": 0.19622157824342398
+   },
+   "shadow_only": {
+    "n_pixels": 780,
+    "coherence_median": 0.1660623699426651,
+    "coherence_iqr": [
+     0.11287496984004974,
+     0.26055124402046204
+    ],
+    "coherence_missing_fraction": 0.0,
+    "invalid_component_fraction": 0.5948717948717949
+   },
+   "geometrically_valid": {
+    "n_pixels": 8561452,
+    "coherence_median": 0.7379685640335083,
+    "coherence_iqr": [
+     0.6096735596656799,
+     0.8511123061180115
+    ],
+    "coherence_missing_fraction": 0.00012766526051888327,
+    "invalid_component_fraction": 0.025456779994795276
+   },
+   "context_geometrically_valid_slope_ge_30deg": {
+    "n_pixels": 643428,
+    "coherence_median": 0.6024684906005859,
+    "coherence_iqr": [
+     0.347772479057312,
+     0.8059634566307068
+    ],
+    "coherence_missing_fraction": 0.0003372560721635054,
+    "invalid_component_fraction": 0.15693752836370192
+   }
+  },
+  "lower_median_coherence": true,
+  "higher_invalid_component_fraction": true,
+  "verdict": "supported",
+  "group_definition": "radar footprint, not water, both subswaths valid, DEM and LOS available; split by the model's layover/shadow flags only. Coherence and components not used for grouping.",
+  "limitations": [
+   "one scene, one interferometric pair (12 days, PROVISIONAL P05023)",
+   "first-order single-pixel layover/shadow model, no passive layover or cast shadow",
+   "layover and shadow groups are small relative to the valid group",
+   "no significance test: descriptive comparison only"
+  ]
+ }
 }
