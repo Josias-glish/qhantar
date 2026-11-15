@@ -23,11 +23,11 @@ from the component statistic.
 | Layover or shadow | 54,612 | 0.557 | 0.319 – 0.747 | 0.03 % | 20.2 % |
 | · layover only | 53,832 | 0.563 | 0.328 – 0.750 | 0.03 % | 19.6 % |
 | · shadow only | 780 | 0.166 | 0.113 – 0.261 | 0.00 % | 59.5 % |
-| Geometrically valid | 8,561,452 | 0.738 | 0.610 – 0.851 | 0.01 % | 2.6 % |
+| Geometrically valid | 8,561,452 | 0.738 | 0.610 – 0.851 | 0.01 % | 2.5 % |
 | *Context: valid with slope ≥ 30°* | 643,428 | 0.602 | 0.348 – 0.806 | 0.03 % | 15.7 % |
 
 **In this scene H1 is supported:** the layover/shadow group has a lower median coherence
-(0.557 vs 0.738) and a much higher fraction of invalid components (20.2 % vs 2.6 %).
+(0.557 vs 0.738) and a much higher fraction of invalid components (20.2 % vs 2.5 %).
 
 ## What this does not show
 

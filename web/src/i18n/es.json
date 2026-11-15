@@ -1,0 +1,135 @@
+{
+  "tagline": "Observabilidad de laderas con NISAR",
+  "identity": "No basta con ver una señal. Hay que saber si el radar podía observar aquello que queremos interpretar.",
+  "nav": {
+    "mission": "Resumen de misión",
+    "mountain": "Observatorio de montaña",
+    "radar": "Evidencia radar",
+    "observability": "Observabilidad pendiente–LOS",
+    "passport": "Pasaporte de evidencia"
+  },
+  "lang": "English",
+  "region": { "label": "Zona", "lapaz": "La Paz", "scene": "Escena completa" },
+  "opacity": "Opacidad de la capa",
+  "real_data": "Datos reales de NISAR",
+  "mission": {
+    "title": "Qué es QHANTAR",
+    "what": "QHANTAR toma un producto real GUNW de NISAR (interferograma desenrollado geocodificado) y, para cada píxel, se pregunta si esta pareja interferométrica concreta permite interpretar un movimiento hipotético cuesta abajo de la ladera. Cruza tres cosas: la geometría de la ladera según un DEM, la línea de visión nativa del radar guardada en el producto, y la coherencia y los componentes conectados medidos en esta pareja.",
+    "not_title": "Qué no es QHANTAR",
+    "not": [
+      "No predice deslizamientos.",
+      "No detecta automáticamente movimientos de ladera.",
+      "No calcula un índice de riesgo.",
+      "No determina si una montaña es estable.",
+      "No mide desplazamiento a partir de S.",
+      "No convierte coherencia en desplazamiento.",
+      "No interpreta la fase cruda como un evento confirmado.",
+      "No recupera las tres componentes del movimiento con una sola línea de visión.",
+      "No garantiza que una zona «interpretable» tenga movimiento detectable."
+    ],
+    "slow": "Una sola pareja de 12 días no puede presentarse como detector de deslizamientos lentos: 5 cm/año son unos 1.6 mm en 12 días, que pueden quedar por debajo del ruido de un interferograma.",
+    "product": "Producto analizado",
+    "prior": "No es una idea nueva: la relación pendiente–línea de visión y los índices de visibilidad ya existen (Notti et al. 2010; van Natijne et al. 2022). QHANTAR los aplica a posteriori sobre una pareja NISAR concreta, con su geometría nativa y su calidad medida."
+  },
+  "fields": {
+    "granule": "Granule",
+    "reference": "Adquisición de referencia",
+    "secondary": "Adquisición secundaria",
+    "maturity": "Madurez",
+    "crid": "CRID",
+    "orbit": "Órbita / lado de observación",
+    "track_frame": "Track / frame",
+    "pol": "Frecuencia / polarización",
+    "source": "Fuente",
+    "doi": "DOI del producto",
+    "processed": "Producto procesado (UTC)",
+    "grid": "Malla",
+    "dem": "DEM",
+    "dem_vertical": "Alturas del DEM",
+    "url": "URL de descarga",
+    "generated": "Resultados generados (UTC)"
+  },
+  "mountain": {
+    "title": "El terreno de la escena",
+    "body": "La pendiente y la orientación cuesta abajo se calculan con el DEM Copernicus GLO-30 remuestreado a la malla de 80 m del GUNW, en coordenadas métricas (UTM 19S). Los píxeles con pendiente menor que el mínimo no tienen dirección cuesta abajo definida.",
+    "hillshade": "Relieve sombreado",
+    "slope": "Pendiente (°)",
+    "aspect": "Orientación cuesta abajo (°, horario desde el norte)",
+    "slope_median": "Pendiente mediana de los píxeles válidos"
+  },
+  "radar": {
+    "title": "Evidencia radar, capa por capa",
+    "body": "Fase, coherencia y componentes conectados se muestran por separado. Nunca se combinan en una puntuación única.",
+    "phase": "Fase desenrollada (radianes)",
+    "phase_note": "Fase en radianes, no desplazamiento. Sus franjas de gran escala que cruzan toda la escena son muy probablemente atmosféricas o ionosféricas; QHANTAR no las interpreta.",
+    "coherence": "Coherencia (0–1)",
+    "cc": "Componentes conectados",
+    "cc_valid": "Componente ≠ 0",
+    "cc_invalid": "Componente 0 (tratado como inválido)",
+    "cc_note": "El valor 0 se trata como inválido por inferencia: ni el archivo ni la documentación de ASF lo definen. El archivo solo contiene 0 y 1.",
+    "coh_median": "Coherencia mediana de los píxeles válidos"
+  },
+  "obs": {
+    "title": "Observabilidad pendiente–LOS",
+    "body": "S es la proyección de un movimiento unitario hipotético cuesta abajo sobre la línea de visión del radar. |S| cercano a 1: movimiento a lo largo de la línea de visión; cercano a 0: movimiento casi invisible para esta geometría. S no es una medida de movimiento.",
+    "state": "Mapa de cuatro estados",
+    "sens": "Sensibilidad |S|",
+    "reason": "Motivo de cada estado",
+    "legend": "Leyenda",
+    "fractions": "Fracciones",
+    "thresholds": "Umbrales usados",
+    "s_min": "|S| mínimo",
+    "coh_min": "Coherencia mínima",
+    "slope_min": "Pendiente mínima (°)",
+    "pixels": "píxeles",
+    "share": "Proporción"
+  },
+  "states": {
+    "1": "Interpretable",
+    "2": "Visible, incoherente",
+    "3": "Coherente, poco sensible",
+    "0": "No observable o inválido"
+  },
+  "state_desc": {
+    "1": "geometría válida, |S| y coherencia sobre el umbral, componente válido",
+    "2": "|S| sobre el umbral, coherencia por debajo",
+    "3": "coherencia sobre el umbral, |S| por debajo",
+    "0": "layover, shadow, sin dato, componente inválido, plano, o |S| y coherencia bajos a la vez"
+  },
+  "reasons": {
+    "0": "Interpretable",
+    "1": "Visible, incoherente",
+    "2": "Coherente, poco sensible",
+    "3": "Sin dato / agua / fuera de subfranja",
+    "4": "Layover",
+    "5": "Shadow",
+    "6": "Plano (sin dirección cuesta abajo)",
+    "7": "Componente conectado inválido",
+    "8": "|S| bajo y coherencia baja"
+  },
+  "passport": {
+    "title": "Pasaporte de evidencia",
+    "provenance": "Procedencia",
+    "params": "Parámetros",
+    "h1": "Hipótesis H1",
+    "h1_q": "¿Los píxeles marcados como layover o shadow tienen menor coherencia y más componentes inválidos que los geométricamente válidos?",
+    "group": "Grupo",
+    "median_coh": "Coherencia mediana",
+    "cc0": "Componente 0",
+    "verdict": "Resultado en esta escena",
+    "limitations": "Limitaciones",
+    "confound": "Parte de la diferencia se debe a la pendiente: los píxeles válidos con pendiente ≥ 30° también tienen menor coherencia. Ver docs/validation-h1.md.",
+    "download": "Descargar results.json",
+    "status": "Pendiente",
+    "pending": "H2 (contraste con el índice R), H3 (LOS nativa frente a aproximación por rumbo e incidencia) y H4 (zonas activas conocidas de La Paz) están pendientes.",
+    "groups": {
+      "layover_or_shadow": "Layover o shadow",
+      "layover_only": "Solo layover",
+      "shadow_only": "Solo shadow",
+      "geometrically_valid": "Geométricamente válidos",
+      "context_geometrically_valid_slope_ge_30deg": "Contexto: válidos, pendiente ≥ 30°"
+    }
+  },
+  "basemap": "Mapa base © colaboradores de OpenStreetMap",
+  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Los resultados provienen de un único producto NISAR PROVISIONAL; cada cifra de esta página se lee de results.json."
+}

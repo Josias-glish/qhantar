@@ -17,3 +17,5 @@ Minor decisions taken without stopping, with the reason.
 - Geoid N sampled every 25 pixels (2 km) and held constant within each block (N varies ~20 m over 300 km, so the block error is well below 1 m).
 - Web PNG colour ranges: phase ±24 rad (RdBu), coherence 0-1 (magma), |S| 0-1 (viridis), slope 0-45° (cividis), aspect 0-360° (twilight). State colours from the Okabe-Ito palette: 1 blue #0072B2, 2 vermillion #D55E00, 3 yellow #F0E442, 0 grey #999999 (semi-transparent).
 - Radar footprint = pixels whose mask low byte has at least one non-zero subswath digit. The water digit is set even outside the acquired frame (low byte 100), so it cannot define the footprint (bug found on the first real run: Lake Titicaca outside the frame was counted as nodata).
+- Web: every view is addressable by URL hash (`#view=…&lang=…&region=…&layer=…&op=…`) so a demo or a screenshot can open a precise state; the web check was run with Playwright (headless Chromium) because the interactive browser session throttled rendering.
+- Web basemap: OpenStreetMap standard tiles, no API key; attribution shown on the map and in the footer.

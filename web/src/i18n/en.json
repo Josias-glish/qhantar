@@ -1,0 +1,135 @@
+{
+  "tagline": "Slope observability with NISAR",
+  "identity": "Seeing a signal is not enough. We need to know whether the radar could observe what we want to interpret.",
+  "nav": {
+    "mission": "Mission summary",
+    "mountain": "Mountain observatory",
+    "radar": "Radar evidence",
+    "observability": "Slope–LOS observability",
+    "passport": "Evidence passport"
+  },
+  "lang": "Español",
+  "region": { "label": "Area", "lapaz": "La Paz", "scene": "Full scene" },
+  "opacity": "Layer opacity",
+  "real_data": "Real NISAR data",
+  "mission": {
+    "title": "What QHANTAR is",
+    "what": "QHANTAR takes one real NISAR GUNW product (a geocoded unwrapped interferogram) and, for every pixel, asks whether this specific interferometric pair allows a hypothetical downhill motion of the slope to be interpreted. It crosses three things: the slope geometry from a DEM, the radar's native line of sight stored in the product, and the coherence and connected components measured for this pair.",
+    "not_title": "What QHANTAR is not",
+    "not": [
+      "It does not predict landslides.",
+      "It does not detect slope movements automatically.",
+      "It does not compute a risk index.",
+      "It does not say whether a mountain is stable.",
+      "It does not measure displacement from S.",
+      "It does not turn coherence into displacement.",
+      "It does not read raw phase as a confirmed event.",
+      "It does not recover the three components of motion from one line of sight.",
+      "It does not guarantee that an 'interpretable' area has detectable motion."
+    ],
+    "slow": "A single 12-day pair cannot be presented as a detector of slow landslides: 5 cm/year is about 1.6 mm in 12 days, which can sit below the noise of one interferogram.",
+    "product": "Product analysed",
+    "prior": "Not a new idea: the slope–line-of-sight relation and visibility indices already exist (Notti et al. 2010; van Natijne et al. 2022). QHANTAR applies them after the fact to one concrete NISAR pair, with its native geometry and its measured quality."
+  },
+  "fields": {
+    "granule": "Granule",
+    "reference": "Reference acquisition",
+    "secondary": "Secondary acquisition",
+    "maturity": "Maturity",
+    "crid": "CRID",
+    "orbit": "Orbit pass / look",
+    "track_frame": "Track / frame",
+    "pol": "Frequency / polarization",
+    "source": "Source",
+    "doi": "Product DOI",
+    "processed": "Product processed (UTC)",
+    "grid": "Grid",
+    "dem": "DEM",
+    "dem_vertical": "DEM heights",
+    "url": "Download URL",
+    "generated": "Results generated (UTC)"
+  },
+  "mountain": {
+    "title": "Terrain of the scene",
+    "body": "Slope and downhill aspect are computed from the Copernicus GLO-30 DEM resampled to the 80 m GUNW grid, using metric coordinates (UTM 19S). Pixels with slope below the minimum have no defined downhill direction.",
+    "hillshade": "Shaded relief",
+    "slope": "Slope (°)",
+    "aspect": "Downhill aspect (°, clockwise from north)",
+    "slope_median": "Median slope of valid pixels"
+  },
+  "radar": {
+    "title": "Radar evidence, layer by layer",
+    "body": "Phase, coherence and connected components are shown separately. They are never combined into a single score.",
+    "phase": "Unwrapped phase (radians)",
+    "phase_note": "Phase in radians, not displacement. Its large-scale fringes across the whole scene are most likely atmospheric or ionospheric; QHANTAR does not interpret them.",
+    "coherence": "Coherence (0–1)",
+    "cc": "Connected components",
+    "cc_valid": "Component ≠ 0",
+    "cc_invalid": "Component 0 (treated as invalid)",
+    "cc_note": "Value 0 is treated as invalid by inference: neither the file nor ASF documentation defines it. The file only contains 0 and 1.",
+    "coh_median": "Median coherence of valid pixels"
+  },
+  "obs": {
+    "title": "Slope–LOS observability",
+    "body": "S is the projection of a hypothetical downhill unit motion on the radar line of sight. |S| close to 1: motion along the line of sight; close to 0: motion almost invisible to this geometry. S is not a measurement of motion.",
+    "state": "Four-state map",
+    "sens": "Sensitivity |S|",
+    "reason": "Reason for each state",
+    "legend": "Legend",
+    "fractions": "Fractions",
+    "thresholds": "Thresholds used",
+    "s_min": "|S| minimum",
+    "coh_min": "Coherence minimum",
+    "slope_min": "Minimum slope (°)",
+    "pixels": "pixels",
+    "share": "Share"
+  },
+  "states": {
+    "1": "Interpretable",
+    "2": "Visible, incoherent",
+    "3": "Coherent, low sensitivity",
+    "0": "Not observable or invalid"
+  },
+  "state_desc": {
+    "1": "valid geometry, |S| and coherence above threshold, valid component",
+    "2": "|S| above threshold, coherence below",
+    "3": "coherence above threshold, |S| below",
+    "0": "layover, shadow, no data, invalid component, flat, or low |S| and low coherence"
+  },
+  "reasons": {
+    "0": "Interpretable",
+    "1": "Visible, incoherent",
+    "2": "Coherent, low sensitivity",
+    "3": "No data / water / outside subswath",
+    "4": "Layover",
+    "5": "Shadow",
+    "6": "Flat (no downhill direction)",
+    "7": "Invalid connected component",
+    "8": "Low |S| and low coherence"
+  },
+  "passport": {
+    "title": "Evidence passport",
+    "provenance": "Provenance",
+    "params": "Parameters",
+    "h1": "Hypothesis H1",
+    "h1_q": "Do pixels flagged as layover or shadow show lower coherence and more invalid components than geometrically valid pixels?",
+    "group": "Group",
+    "median_coh": "Median coherence",
+    "cc0": "Component 0",
+    "verdict": "Result in this scene",
+    "limitations": "Limitations",
+    "confound": "Part of the difference is a steep-slope effect: valid pixels on slopes ≥ 30° also show lower coherence. See docs/validation-h1.md.",
+    "download": "Download results.json",
+    "status": "Pending",
+    "pending": "H2 (contrast with the R index), H3 (native LOS vs heading/incidence approximation) and H4 (known active areas of La Paz) are pending.",
+    "groups": {
+      "layover_or_shadow": "Layover or shadow",
+      "layover_only": "Layover only",
+      "shadow_only": "Shadow only",
+      "geometrically_valid": "Geometrically valid",
+      "context_geometrically_valid_slope_ge_30deg": "Context: valid, slope ≥ 30°"
+    }
+  },
+  "basemap": "Basemap © OpenStreetMap contributors",
+  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Results come from one NISAR PROVISIONAL product; every number on this page is read from results.json."
+}
