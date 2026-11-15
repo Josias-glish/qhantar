@@ -39,15 +39,18 @@ checkpoints. Everything below was done by Claude:
 
 - **Cover page and visual redesign.** On the team member's request, used two Claude Code skills (impeccable, 10k-websites) to restyle the site and add a scroll-driven cover. Generated the cover illustration with the **Higgsfield** connector: one start image (GPT Image 2.6) and one 6-second video (Kling 4.0, chosen by the team member), 22.25 credits in total, each price shown before spending. The team member approved the image, the video and the palette. The illustration is labelled as AI-generated on screen and is never used as data.
 
+- **H2 to H4.** Wrote and ran `scripts/h2.py`, `h3.py` and `h4.py`, and wrote the three validation documents. The H2 criterion (κ ≥ 0.8) was fixed in the script before the first run. The R-index formula was read from the 2021 *Remote Sensing* paper. For H4 the team member chose the NASA Global Landslide Catalog; Claude downloaded it after that approval, and flagged event 987 as probably mis-geocoded.
+
 Claude did **not**:
 
 - validate the results with real users or domain experts;
-- compare against the R-index (H2), the heading/incidence approximation (H3) or known active zones of La Paz (H4);
+- test H4 against mapped landslide outlines (none were available; see `docs/validation-h4.md`);
 - review competitors beyond table 4.3 of the master document.
 
 **Human checkpoints.** The team member made these decisions in the conversation with Claude:
 
 - approved the download of the ascending scene;
+- chose the NASA Global Landslide Catalog as the H4 inventory;
 - reviewed the first real map and told Claude to continue with the default thresholds;
 - will approve the name and content of the public repository before it is published.
 

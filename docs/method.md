@@ -62,7 +62,7 @@ If none of these apply, the pixel gets state 1, 2 or 3 depending on whether |S| 
 | `s_min` | 0.3 | Initial value from the team's master document. It is an adjustable starting point, not a universal constant or a demonstrated result. |
 | `coh_min` | 0.5 | Same source and the same caveat. |
 | `slope_min_deg` | 2° | Below about 2° the downhill direction is not well defined at 80 m. Such pixels are labelled "flat" rather than given an arbitrary aspect. |
-| invalid component | 0 | Inferred, not documented: the file holds only 0 and 1, every no-data pixel carries 0, the master document says so, and it is the usual unwrapper convention. Neither the file attributes, the ASF page nor the product specification define it. |
+| invalid component | 0 | Documented by the processing software, not by the file: the GUNW metadata names the unwrapper (`processingInformation/algorithms/unwrapping/unwrappingAlgorithm = snaphu`); the SNAPHU Python interface documents that pixels "not belonging to any component are assigned a label of zero" (snaphu-py, `_unwrap.py`); and the NISAR configuration of ISCE3 counts "valid connected components (not including zero nor the fill value)" (`share/nisar/defaults/insar.yaml`, `connected_components` QA block, develop commit 8a6bf71, checked 2026-11-15). The file's own attributes and the product specification still do not define it, and the ISCE3 version used for this product may differ from that commit. |
 
 All four are function arguments. They are written to `results.json` and shown in the web app.
 They were not tuned to make H1 pass.

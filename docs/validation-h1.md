@@ -39,4 +39,4 @@ from the component statistic.
 - The layover/shadow model is first-order and per pixel; passive layover and cast shadow are not modelled.
 - The shadow group is tiny (780 pixels); its numbers are fragile.
 - Descriptive comparison only; no significance test.
-- Connected component 0 is treated as invalid by inference (see `docs/DECISIONS.md`).
+- Connected component 0 is treated as invalid. The file does not define it; SNAPHU and NISAR's ISCE3 configuration do (see `docs/method.md`).

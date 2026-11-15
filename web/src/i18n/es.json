@@ -70,7 +70,7 @@
     "cc": "Componentes conectados",
     "cc_valid": "Componente ≠ 0",
     "cc_invalid": "Componente 0 (tratado como inválido)",
-    "cc_note": "El valor 0 se trata como inválido por inferencia: ni el archivo ni la documentación de ASF lo definen. El archivo solo contiene 0 y 1.",
+    "cc_note": "El valor 0 significa «fuera de todo componente conectado» y se trata como inválido. El archivo no lo dice, pero se desenrolló con SNAPHU, que marca así esos píxeles, y el software ISCE3 de NASA excluye el 0 de los componentes válidos. El archivo solo contiene 0 y 1.",
     "coh_median": "Coherencia mediana de los píxeles válidos"
   },
   "obs": {

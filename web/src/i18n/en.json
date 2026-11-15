@@ -70,7 +70,7 @@
     "cc": "Connected components",
     "cc_valid": "Component ≠ 0",
     "cc_invalid": "Component 0 (treated as invalid)",
-    "cc_note": "Value 0 is treated as invalid by inference: neither the file nor ASF documentation defines it. The file only contains 0 and 1.",
+    "cc_note": "Value 0 means \"not in any connected component\" and is treated as invalid. The file itself does not say so, but it was unwrapped with SNAPHU, which labels such pixels 0, and NASA's ISCE3 software excludes 0 from valid components. The file only contains 0 and 1.",
     "coh_median": "Median coherence of valid pixels"
   },
   "obs": {
