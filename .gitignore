@@ -9,3 +9,6 @@ web/dist/
 results/*/full/
 .impeccable/review/
 docs/QHANTAR-funcionamiento.html
+
+.vercel
+.env*
