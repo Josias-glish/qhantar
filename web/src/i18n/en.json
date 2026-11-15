@@ -146,8 +146,9 @@
       "Left": "left-looking",
       "Right": "right-looking"
     },
-    "maturity_note": "PROVISIONAL (CRID {crid}). ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-14.",
+    "maturity_note": "ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-15.",
     "source": "NASA/JPL NISAR L2 GUNW via ASF DAAC",
+    "grid_size": "{w} columns × {h} rows",
     "dem": "Copernicus GLO-30 (EGM2008 heights) — {src} ({n} tiles, averaged to the 80 m GUNW grid)",
     "dem_vertical": "Converted to WGS84 ellipsoidal height with EGM2008 (PROJ) before interpolating the geometry cubes",
     "cc_label": "Connected component",

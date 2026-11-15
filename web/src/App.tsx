@@ -9,6 +9,7 @@ export type Lang = "en" | "es";
 export type Dict = typeof en;
 // acquisition [start, stop] as "YYYY-MM-DD hh:mm:ss → hh:mm:ss UTC" (the file stores nanoseconds)
 const span = ([a, b]: string[]) => `${a.slice(0, 10)} ${a.slice(11, 19)} → ${b.slice(11, 19)} UTC`;
+const utc = (s: string) => `${s.slice(0, 10)} ${s.slice(11, 19)}`;
 const orb = (t: Dict, k: string) => (t.pv.orbit as Record<string, string>)[k] ?? k;
 type View = "cover" | "mission" | "mountain" | "radar" | "observability" | "passport";
 type Region = "lapaz" | "scene";
@@ -326,19 +327,19 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
             <dt>{t.fields.granule}</dt><dd className="mono">{p.granule}</dd>
             <dt>{t.fields.reference}</dt><dd>{span(p.reference_acquisition)}</dd>
             <dt>{t.fields.secondary}</dt><dd>{span(p.secondary_acquisition)}</dd>
-            <dt>{t.fields.maturity}</dt><dd><span className="badge">{p.maturity}</span><div className="small">{t.pv.maturity_note.replace("{crid}", p.crid)}</div></dd>
+            <dt>{t.fields.maturity}</dt><dd><span className="badge">{p.maturity}</span><div className="small">{t.pv.maturity_note}</div></dd>
             <dt>{t.fields.crid}</dt><dd>{p.crid}</dd>
             <dt>{t.fields.orbit}</dt><dd>{orb(t, p.orbit_pass)} / {orb(t, p.look_direction)}</dd>
             <dt>{t.fields.track_frame}</dt><dd>{p.track} / {p.frame}</dd>
             <dt>{t.fields.pol}</dt><dd>{p.frequency.join(", ")} / {p.polarization}</dd>
             <dt>{t.fields.source}</dt><dd>{t.pv.source} — {p.collection}</dd>
             <dt>{t.fields.doi}</dt><dd><a href={`https://doi.org/${p.doi}`}>{p.doi}</a></dd>
-            <dt>{t.fields.processed}</dt><dd>{p.product_processing_utc}</dd>
+            <dt>{t.fields.processed}</dt><dd>{utc(p.product_processing_utc)}</dd>
             <dt>{t.fields.url}</dt><dd className="mono small">{p.download_url}</dd>
-            <dt>{t.fields.grid}</dt><dd>EPSG:{p.grid.epsg}, {p.grid.spacing_m} m, {p.grid.shape.join(" × ")}</dd>
+            <dt>{t.fields.grid}</dt><dd>EPSG:{p.grid.epsg}, {p.grid.spacing_m} m, {t.pv.grid_size.replace("{w}", String(p.grid.shape[1])).replace("{h}", String(p.grid.shape[0]))}</dd>
             <dt>{t.fields.dem}</dt><dd>{t.pv.dem.replace("{src}", p.dem.source).replace("{n}", String(p.dem.tiles.length))}</dd>
             <dt>{t.fields.dem_vertical}</dt><dd>{t.pv.dem_vertical}</dd>
-            <dt>{t.fields.generated}</dt><dd>{r.generated_utc}</dd>
+            <dt>{t.fields.generated}</dt><dd>{utc(r.generated_utc)}</dd>
           </dl>
           <h3>{t.passport.params}</h3>
           <dl className="facts compact">

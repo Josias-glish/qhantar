@@ -146,9 +146,10 @@
       "Left": "mira a la izquierda",
       "Right": "mira a la derecha"
     },
-    "maturity_note": "PROVISIONAL (CRID {crid}). ASF documenta en P05023 un problema de marcas de tiempo que puede decorrelacionar el InSAR, corregido en P05036; el 2026-11-14 no existía ningún GUNW P05036 sobre La Paz.",
+    "maturity_note": "ASF documenta en P05023 un problema de marcas de tiempo que puede decorrelacionar el InSAR, corregido en P05036; el 2026-11-15 no existía ningún GUNW P05036 sobre La Paz.",
     "source": "NASA/JPL, NISAR L2 GUNW vía ASF DAAC",
-    "dem": "Copernicus GLO-30 (alturas EGM2008) — {src} ({n} mosaicos, promediados a la malla de 80 m del GUNW)",
+    "grid_size": "{w} columnas × {h} filas",
+    "dem": "Copernicus GLO-30 (alturas EGM2008) — {src} ({n} teselas, promediadas a la malla de 80 m del GUNW)",
     "dem_vertical": "Convertidas a altura elipsoidal WGS84 con EGM2008 (PROJ) antes de interpolar los cubos de geometría",
     "cc_label": "Componente conectado",
     "cc": "{v} = inválido",
