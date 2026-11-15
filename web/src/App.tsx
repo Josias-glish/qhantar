@@ -368,7 +368,13 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
               <ul>{h.limitations.map((x) => <li key={x}>{x}</li>)}</ul>
             </>
           ) : <p className="badge">{t.passport.status}</p>}
-          <p className="note">{t.passport.pending}</p>
+          <h3>{t.passport.h234}</h3>
+          <dl className="facts compact">
+            {r.h2 && <><dt>H2</dt><dd>{t.passport.h2} {num(r.h2.layover_agreement.kappa)} / {num(r.h2.active_shadow_agreement.kappa)} · <span className="badge">{r.h2.verdict}</span></dd></>}
+            {r.h3 && <><dt>H3</dt><dd>{t.passport.h3} {pct(r.h3.A_constant_heading_constant_incidence.state_changed_fraction)} / {pct(r.h3.B_constant_heading_per_pixel_incidence.state_changed_fraction)}</dd></>}
+            {r.h4 && <><dt>H4</dt><dd>{r.h4.inventory.name}: {r.h4.inventory.events_in_la_paz_crop} · <span className="badge">{r.h4.status}</span></dd></>}
+          </dl>
+          <p className="note">{t.passport.h234_docs}</p>
         </section>
       </div>
     </main>

@@ -65,7 +65,12 @@ valid pixels): **supported in this scene**, with a confound.
 | Context: valid, slope ≥ 30° | 643,428 | 0.602 | 15.7 % |
 
 Part of the difference is a steep-slope effect; see [`docs/validation-h1.md`](docs/validation-h1.md).
-H2, H3 and H4 were not run.
+H2: QHANTAR's layover and shadow flags are consistent with an independent R-index implementation
+(Cohen's κ 0.880 and 0.838; [`docs/validation-h2.md`](docs/validation-h2.md)). H3: replacing the native LOS
+with a heading/incidence approximation changes the state of 3.1 % of the pixels, 1.7 % from the look azimuth
+alone ([`docs/validation-h3.md`](docs/validation-h3.md)). H4: not testable with the NASA Global Landslide
+Catalog, whose 4 events in the crop carry 1 to 10 km location uncertainty; reported as context only
+([`docs/validation-h4.md`](docs/validation-h4.md)).
 
 Every number above is read from
 [`results/T118_A_F169_20261008_20261020_P05023/results.json`](results/T118_A_F169_20261008_20261020_P05023/results.json).
@@ -98,6 +103,9 @@ done; done
 G=data/raw/NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T102436_20261020T102402_20261020T102436_P05023_N_F_J_001.h5
 python scripts/process_scene.py $G data/raw/dem        # optional: --s-min --coh-min --slope-min-deg
 python scripts/h1.py $G results/T118_A_F169_20261008_20261020_P05023
+python scripts/h2.py results/T118_A_F169_20261008_20261020_P05023
+python scripts/h3.py $G results/T118_A_F169_20261008_20261020_P05023
+python scripts/h4.py <Global_Landslide_Catalog_Export_rows.csv> results/T118_A_F169_20261008_20261020_P05023   # data.nasa.gov
 
 # 4. Web app (live: https://qhantar.vercel.app)
 cd web && npm ci && npm run build && npm run preview   # http://localhost:4173
@@ -111,7 +119,7 @@ report. The processing needs about 4 GB of free RAM and takes several minutes.
 ```
 qhantar/engine.py        geometry, sensitivity, layover/shadow, four-state classification
 tests/test_engine.py     analytical tests
-scripts/                 inspect_gunw.py, process_scene.py, h1.py
+scripts/                 inspect_gunw.py, process_scene.py, h1.py … h4.py
 results/<scene>/         results.json, La Paz GeoTIFFs (geotiff/), web PNGs (web/)
 web/                     React + TypeScript + Vite + MapLibre static site (ES/EN): scroll cover + 5 views
 docs/                    method, conventions, decisions, status, H1, pitch, submission, AI usage, screenshots
@@ -126,7 +134,9 @@ docs/master-document.es.md   the team's foundational document (Spanish)
 | Engine + 20 analytical tests | Done |
 | Four-state map, separate evidence layers, `results.json` | Done |
 | H1 | Done: supported, with a steep-slope confound |
-| H2 (R-index contrast), H3 (native LOS vs heading/incidence), H4 (known active zones) | Pending |
+| H2 (R-index contrast) | Done: consistent (κ 0.880 layover, 0.838 shadow) |
+| H3 (native LOS vs heading/incidence) | Done: 3.1 % of pixels change state |
+| H4 (known active zones) | Not testable with the NASA catalogue; context only |
 | Web app, 5 views, ES/EN | Done |
 | Web cover (AI illustration, labelled; hands over to real layers) | Done |
 | Validation with real users | Not done |

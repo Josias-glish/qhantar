@@ -67,7 +67,9 @@ Hypothesis H1 is supported in this scene. Pixels flagged as layover or shadow ha
 - 20.2 % invalid connected components, against 2.5 %.
 
 Valid slopes steeper than 30° are also worse (0.602), so part of the effect is slope steepness.
-H2 (R-index contrast), H3 (native LOS vs heading/incidence) and H4 (known active zones) are pending.
+H2: the layover and shadow flags are consistent with an independent R-index (κ 0.880 and 0.838).
+H3: the native LOS changes the state of 3.1 % of the pixels compared with a heading/incidence approximation.
+H4: not testable with the NASA Global Landslide Catalog (4 events, 1 to 10 km location accuracy); reported as context.
 
 **What it is not.** It is not a landslide detector, a risk index or a displacement measurement. A
 single 12-day pair cannot reveal slow landslides (5 cm/year ≈ 1.6 mm in 12 days).

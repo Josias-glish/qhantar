@@ -125,7 +125,10 @@
     "confound": "Part of the difference is a steep-slope effect: valid pixels on slopes ≥ 30° also show lower coherence. See docs/validation-h1.md.",
     "download": "Download results.json",
     "status": "Pending",
-    "pending": "H2 (contrast with the R index), H3 (native LOS vs heading/incidence approximation) and H4 (known active areas of La Paz) are pending.",
+    "h234": "Hypotheses H2 to H4",
+    "h2": "Layover and shadow against an independent R-index, Cohen's κ:",
+    "h3": "Pixels that change state with a heading/incidence approximation instead of the native LOS (constant incidence / per-pixel incidence):",
+    "h234_docs": "H4 has no reliable inventory: the catalogue's 1 to 10 km location accuracy cannot test it. Details in docs/validation-h2.md, -h3.md and -h4.md.",
     "groups": {
       "layover_or_shadow": "Layover or shadow",
       "layover_only": "Layover only",

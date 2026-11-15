@@ -58,7 +58,8 @@ Switch to *reason* for a second to show why each grey pixel is grey.
 maturity, DOI, DEM and parameters. We also tested a hypothesis. Pixels our model flags as layover
 or shadow have a median coherence of 0.557, against 0.738 for geometrically valid pixels. They
 also have 20.2 % invalid components, against 2.5 %. So the hypothesis is supported in this scene.
-But steep valid slopes are also worse, at 0.602, and we say so. H2 to H4 are still pending."
+But steep valid slopes are also worse, at 0.602, and we say so. An independent R-index agrees with our
+layover and shadow flags. And the one landslide catalogue we could find is too coarse to test against, so we say that too."
 
 **Close (10 s).** "QHANTAR: knowing where to trust the radar, and where not."
 
@@ -88,8 +89,8 @@ has good sensitivity but coherence below 0.5.
 They are the geometry the product itself provides, per pixel and per height. On this scene they
 agree with the product's incidence cube to within 1.5·10⁻⁵°. Their azimuth spans 80.1° to 80.6°,
 which is consistent with a left-looking ascending pass. Comparing them with the simpler
-heading/incidence approximation is H3, which is still pending. We have not measured how much
-difference it makes.
+heading/incidence approximation is H3: heading + 90° is 2.6° to 3.1° off the native look direction,
+and with a constant incidence as well, 3.1 % of the pixels change state.
 
 **Why four states?**
 Because geometry and quality are different dimensions. Merging them into one score would hide
@@ -103,7 +104,8 @@ separately.
   against the look side, and S by aspect against the analytical values.
 - H1: supported, with a steep-slope confound.
 
-What is missing: validation with users and against known active zones (H4).
+What is missing: validation with users, and a test against mapped landslide outlines. H4 with the
+NASA catalogue could not test it (1 to 10 km location accuracy).
 
 **Can it give 3-D motion?**
 No. One line of sight measures one projection.

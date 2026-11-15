@@ -138,9 +138,10 @@ th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; colo
 
 .passport { padding: 0.5rem clamp(16px, 3vw, 40px) 2.5rem; max-width: 1240px; margin: 0 auto; width: 100%; }
 .passport > h2 { font-family: var(--display); font-weight: 800; font-variation-settings: "wdth" 125; letter-spacing: 0.06em; font-size: clamp(1.6rem, 3vw, 2.4rem); }
-.passport .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.passport .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; }
 .passport .cols > section { animation: settle 0.6s var(--ease-out) both; }
 .passport .cols > section + section { animation-delay: 120ms; }
+.passport dd { overflow-wrap: anywhere; }
 .download { display: inline-flex; margin-top: 0.9rem; padding: 0.6rem 1rem; background: var(--siena); color: var(--paper-hi); text-decoration: none; font-weight: 650; }
 .download:hover { background: var(--siena-hi); color: var(--paper-hi); }
 
@@ -281,7 +282,10 @@ footer p { margin: 0.2rem 0; max-width: 110ch; }
   .mapwrap { display: flex; flex-direction: column; min-height: 0; }
   .mapwrap .map { position: relative; height: 58vh; inset: auto; margin: 10px; }
   .legend-dock { position: static; max-width: none; margin: 0.6rem 1rem; }
-  .passport .cols { grid-template-columns: 1fr; }
+  .passport .cols { grid-template-columns: minmax(0, 1fr); }
+  .passport th { letter-spacing: 0.04em; }
+  .passport th, .passport td { padding-inline: 0.25rem; }
+  .passport th { overflow-wrap: anywhere; white-space: normal; }
   .handover { height: auto; }
   .hstage { position: relative; height: auto; grid-template-columns: 1fr; padding-top: 3rem; }
   .sheet { width: 100%; }

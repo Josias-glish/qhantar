@@ -125,7 +125,10 @@
     "confound": "Parte de la diferencia se debe a la pendiente: los píxeles válidos con pendiente ≥ 30° también tienen menor coherencia. Ver docs/validation-h1.md.",
     "download": "Descargar results.json",
     "status": "Pendiente",
-    "pending": "H2 (contraste con el índice R), H3 (LOS nativa frente a aproximación por rumbo e incidencia) y H4 (zonas activas conocidas de La Paz) están pendientes.",
+    "h234": "Hipótesis H2 a H4",
+    "h2": "Layover y shadow frente a un índice R independiente, κ de Cohen:",
+    "h3": "Píxeles que cambian de estado con una aproximación por rumbo e incidencia en vez de la LOS nativa (incidencia constante / por píxel):",
+    "h234_docs": "H4 no tiene un inventario fiable: la precisión de 1 a 10 km del catálogo no permite probarla. Detalles en docs/validation-h2.md, -h3.md y -h4.md.",
     "groups": {
       "layover_or_shadow": "Layover o shadow",
       "layover_only": "Solo layover",

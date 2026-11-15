@@ -27,4 +27,7 @@ export interface Results {
     groups: Record<string, H1Group>; verdict: string; lower_median_coherence: boolean;
     higher_invalid_component_fraction: boolean; limitations: string[];
   };
+  h2?: { layover_agreement: { kappa: number }; active_shadow_agreement: { kappa: number }; verdict: string };
+  h3?: Record<"A_constant_heading_constant_incidence" | "B_constant_heading_per_pixel_incidence", { state_changed_fraction: number }>;
+  h4?: { status: string; inventory: { name: string; events_in_la_paz_crop: number } };
 }

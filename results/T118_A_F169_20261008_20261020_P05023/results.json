@@ -844,5 +844,223 @@
    "layover and shadow groups are small relative to the valid group",
    "no significance test: descriptive comparison only"
   ]
+ },
+ "h2": {
+  "hypothesis": "QHANTAR's layover/shadow flags agree with an independent R-index implementation (Cohen's kappa >= 0.8 for both flags, criterion fixed before running).",
+  "r_index_formula": "R = sin{theta + arctan[tan(slope) * cos(phi - aspect)]}, phi = look azimuth (Notti et al. 2010, 2014; as in Remote Sens. 2021, 13, 1938, eq. 1)",
+  "independence": "slope/aspect recomputed with Horn's 3x3 method; no code shared with qhantar.engine",
+  "layover_agreement": {
+   "kappa": 0.8800417778110213,
+   "r_index_pixels": 46160,
+   "qhantar_pixels": 53818,
+   "both": 44027,
+   "n_pixels": 8614957
+  },
+  "active_shadow_agreement": {
+   "kappa": 0.8376683789517301,
+   "r_index_pixels": 600,
+   "qhantar_pixels": 780,
+   "both": 578,
+   "n_pixels": 8614957
+  },
+  "control_same_slope_aspect_as_qhantar": {
+   "layover_kappa": 1.0,
+   "active_shadow_kappa": 1.0
+  },
+  "r_class_fraction_by_state": {
+   "interpretable": {
+    "layover": 1.1750484340276401e-05,
+    "active_shadow": 2.9376210850691e-07,
+    "foreshortening": 0.3930939465911111,
+    "good_visibility": 0.6068940091624402
+   },
+   "visible_incoherent": {
+    "layover": 6.364377997766682e-05,
+    "active_shadow": 2.6036091809045517e-05,
+    "foreshortening": 0.10634875634268126,
+    "good_visibility": 0.8935615637855321
+   },
+   "coherent_low_sensitivity": {
+    "layover": 0.0006390249304474192,
+    "active_shadow": 0.0,
+    "foreshortening": 0.784835616345478,
+    "good_visibility": 0.21452535872407458
+   },
+   "not_observable_or_invalid": {
+    "layover": 0.014527584544746137,
+    "active_shadow": 0.00019061255768452911,
+    "foreshortening": 0.5326813306953417,
+    "good_visibility": 0.45260047220222765
+   }
+  },
+  "spearman_R_vs_absS_valid_geometry": 0.5541968330277133,
+  "fraction_of_R_good_visibility_with_absS_below_0_3": 0.17935718569474407,
+  "verdict": "consistent",
+  "reading": "R scores how the slope is imaged (pixel compression); |S| scores how much downhill motion projects on the LOS. They answer different questions, so pixels with good R-index visibility can still be blind to downhill motion.",
+  "limitations": [
+   "the R-index layover condition and QHANTAR's range-plane condition are the same first-order geometry, so agreement mostly tests implementation and the DEM-derivative choice",
+   "no passive layover or cast shadow in either model",
+   "R classes follow the 2021 paper's description; Notti et al. 2014 use their own class cut-offs",
+   "one scene, one pair"
+  ]
+ },
+ "h3": {
+  "question": "How much does the four-state result change when the native per-pixel LOS is replaced by a heading/incidence approximation?",
+  "orbit_heading_deg": 347.51516057402426,
+  "sub_satellite_point": {
+   "lon": -63.27314780933208,
+   "lat": -16.02348246294995
+  },
+  "native_los_azimuth_target_to_sensor_deg": {
+   "min": 80.11908721923828,
+   "max": 80.59683227539062,
+   "approximation": 77.51516057402428
+  },
+  "native_incidence_deg": {
+   "min": 33.66031265258789,
+   "max": 47.341392517089844,
+   "constant_used_in_A": 40.93495611109805
+  },
+  "control_native_reproduces_state": true,
+  "A_constant_heading_constant_incidence": {
+   "abs_S_difference": {
+    "median": 0.03167021771864664,
+    "p95": 0.0801094583371872,
+    "max": 0.12769717807967296
+   },
+   "abs_S_threshold_crossings_fraction": 0.04052719009508695,
+   "state_changed_fraction": 0.03059450623661058,
+   "state_changed_fraction_by_native_state": {
+    "interpretable": 0.03869816383994078,
+    "visible_incoherent": 0.02277579453473504,
+    "coherent_low_sensitivity": 0.06086387582463031,
+    "not_observable_or_invalid": 0.00786953413655549
+   },
+   "n_pixels": 8972101
+  },
+  "B_constant_heading_per_pixel_incidence": {
+   "abs_S_difference": {
+    "median": 0.01995848813794643,
+    "p95": 0.03420197350024527,
+    "max": 0.039425476264866935
+   },
+   "abs_S_threshold_crossings_fraction": 0.02729938176127867,
+   "state_changed_fraction": 0.0174424028441053,
+   "state_changed_fraction_by_native_state": {
+    "interpretable": 0.020812751625606068,
+    "visible_incoherent": 0.008516694920647778,
+    "coherent_low_sensitivity": 0.043583082281098647,
+    "not_observable_or_invalid": 0.0016119090680529761
+   },
+   "n_pixels": 8972101
+  },
+  "la_paz_crop_state_changed_fraction": {
+   "A": 0.02864448179485104,
+   "B": 0.01688148440885046
+  },
+  "reading": "heading + 90 deg puts the look azimuth 2.6 to 3.1 deg away from the native LOS (B isolates this), and a constant incidence adds the across-swath spread of 33.7 to 47.3 deg (A)",
+  "limitations": [
+   "one scene, one pair",
+   "the approximation uses the product's own orbit at the sub-satellite point; a nominal published heading could differ more or less",
+   "same first-order layover/shadow model for all variants"
+  ]
+ },
+ "h4": {
+  "question": "Which QHANTAR states cover the places where landslides in La Paz were reported?",
+  "status": "context only, not a validation",
+  "inventory": {
+   "name": "NASA Global Landslide Catalog export",
+   "file": "Global_Landslide_Catalog_Export_rows.csv",
+   "url": "https://data.nasa.gov/docs/legacy/Global_Landslide_Catalog_Export/Global_Landslide_Catalog_Export_rows.csv",
+   "md5": "7e12dbd01cd937d7f3a68df0f3fcecce",
+   "rows": 11033,
+   "events_in_la_paz_crop": 4,
+   "citation": "Kirschbaum et al. 2010, Nat. Hazards 52:561-575; Kirschbaum, Stanley & Zhou 2015, Geomorphology, doi:10.1016/j.geomorph.2015.03.016"
+  },
+  "la_paz_crop_state_shares": {
+   "n_pixels": 420046,
+   "interpretable": 0.35460163886812396,
+   "visible_incoherent": 0.08618341800659927,
+   "coherent_low_sensitivity": 0.23553134656680458,
+   "not_observable_or_invalid": 0.3236835965584722,
+   "flat_terrain_reason": 0.2987577551030125
+  },
+  "events": [
+   {
+    "event_id": "3151",
+    "event_date": "02/26/2011",
+    "event_title": "Irpavi II and Pampahasi neighborhoods, also Metropolitana.(?), Valle de Las Flores(?), Callapa(Carlapa?) district, and  Kupini II(?) district, 4th Mai",
+    "location_accuracy": "10km",
+    "landslide_category": "landslide",
+    "landslide_size": "large",
+    "radius_km": 10.0,
+    "state_shares_in_disc": {
+     "n_pixels": 49101,
+     "interpretable": 0.5703346164029246,
+     "visible_incoherent": 0.041098959287998206,
+     "coherent_low_sensitivity": 0.3324372212378567,
+     "not_observable_or_invalid": 0.056129203071220546,
+     "flat_terrain_reason": 0.050854361418301054
+    }
+   },
+   {
+    "event_id": "1457",
+    "event_date": "01/29/2010",
+    "event_title": "Huanu Huanuni, Bella Vista, south of La Paz",
+    "location_accuracy": "10km",
+    "landslide_category": "landslide",
+    "landslide_size": "large",
+    "radius_km": 10.0,
+    "state_shares_in_disc": {
+     "n_pixels": 49083,
+     "interpretable": 0.4920848358902268,
+     "visible_incoherent": 0.02919544445123566,
+     "coherent_low_sensitivity": 0.3101073691502149,
+     "not_observable_or_invalid": 0.16861235050832263,
+     "flat_terrain_reason": 0.16062587861377667
+    }
+   },
+   {
+    "event_id": "987",
+    "event_date": "02/18/2009",
+    "event_title": "La paz city",
+    "location_accuracy": "10km",
+    "landslide_category": "mudslide",
+    "landslide_size": "medium",
+    "radius_km": 10.0,
+    "state_shares_in_disc": {
+     "n_pixels": 49090,
+     "interpretable": 0.38565899368506823,
+     "visible_incoherent": 0.06398451823181911,
+     "coherent_low_sensitivity": 0.2766347524954166,
+     "not_observable_or_invalid": 0.2737217355876961,
+     "flat_terrain_reason": 0.24004888979425545
+    }
+   },
+   {
+    "event_id": "10773",
+    "event_date": "02/15/2017",
+    "event_title": "Auquisama\u00f1a Area Landslide Destroys Several Homes",
+    "location_accuracy": "1km",
+    "landslide_category": "landslide",
+    "landslide_size": "large",
+    "radius_km": 1.0,
+    "state_shares_in_disc": {
+     "n_pixels": 492,
+     "interpretable": 0.6869918699186992,
+     "visible_incoherent": 0.0040650406504065045,
+     "coherent_low_sensitivity": 0.2967479674796748,
+     "not_observable_or_invalid": 0.012195121951219513,
+     "flat_terrain_reason": 0.012195121951219513
+    }
+   }
+  ],
+  "reading": "the catalogue places events with 1 to 10 km uncertainty, while QHANTAR pixels are 80 m; a disc of that size covers whole valleys, so its state mix cannot say whether the slope that failed was observable",
+  "limitations": [
+   "only events in this one catalogue; no municipal or published inventory was used",
+   "events are points with stated accuracy, not mapped landslide outlines",
+   "events date from before the 2026 acquisitions; the pair cannot show those movements",
+   "a state mix is not a detection: QHANTAR does not detect landslides"
+  ]
  }
 }
