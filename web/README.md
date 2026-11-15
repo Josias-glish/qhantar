@@ -5,7 +5,7 @@ Static bilingual (ES/EN) viewer for the processed scene. Every number it shows i
 
 ```bash
 npm ci
-npm run build      # copies ../results/<granule>/web/* and results.json into public/data, then builds dist/
+npm run build      # copies ../results/<scene folder>/web/* and results.json into public/data, then builds dist/
 npm run preview    # serves dist/ on http://localhost:4173
 ```
 

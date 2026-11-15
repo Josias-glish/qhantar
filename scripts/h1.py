@@ -4,7 +4,7 @@ connected components than geometrically valid pixels?
 Groups are built from geometry and the product's own footprint/water/subswath mask only.
 Coherence and connected components are NOT used to build or filter the groups.
 
-Usage: python scripts/h1.py data/raw/<granule>.h5 results/<granule>
+Usage: python scripts/h1.py data/raw/<granule>.h5 results/<scene folder>
 """
 import json
 import sys

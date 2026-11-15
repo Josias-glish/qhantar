@@ -3,7 +3,7 @@
 Usage:
   python scripts/process_scene.py data/raw/<granule>.h5 data/raw/dem [--s-min 0.3 --coh-min 0.5 --slope-min-deg 2]
 
-Writes results/<granule>/:
+Writes results/T<track>_<A|D>_F<frame>_<ref date>_<sec date>_<CRID>/:
   results.json          provenance, parameters, fractions, quality statistics, checks
   web/*.png             layers reprojected to EPSG:4326 for the web (La Paz crop + full scene preview)
   geotiff/*.tif         La Paz crop, every layer, native UTM 80 m grid (committed)
@@ -155,7 +155,8 @@ def main():
 
     g = read_gunw(a.gunw)
     gid = g["ident"]["granuleId"]
-    out = Path(a.out) / gid
+    f = gid.split("_")  # short folder name: Windows MAX_PATH breaks clones under the 150-char granule id
+    out = Path(a.out) / f"T{f[5]}_{f[6]}_F{f[7]}_{f[11][:8]}_{f[13][:8]}_{f[15]}"
     x, y, epsg = g["x"], g["y"], g["epsg"]
     dx, dy = float(x[1] - x[0]), float(y[0] - y[1])
     transform = from_origin(x[0] - dx / 2, y[0] + dy / 2, dx, dy)  # coordinates are pixel centres
