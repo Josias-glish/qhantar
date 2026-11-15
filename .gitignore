@@ -12,3 +12,4 @@ docs/QHANTAR-funcionamiento.html
 
 .vercel
 .env*
+.claude/scheduled_tasks.lock
