@@ -1,0 +1,7 @@
+numpy
+h5py
+rasterio
+pyproj
+earthaccess
+pytest
+matplotlib
