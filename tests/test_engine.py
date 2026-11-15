@@ -142,6 +142,18 @@ def test_ascending_left_looking_sees_from_east():
     assert E.los_from_angles(D(37), D(-12), "left")[0] > 0.5
 
 
+def test_interp_cube_reproduces_linear_field():
+    z = np.arange(-500.0, 9001, 500)
+    y = np.arange(8278250.0, 8270000, -500)
+    x = np.arange(381750.0, 390000, 500)
+    Z, Y, X = np.meshgrid(z, y, x, indexing="ij")
+    cube = 0.001 * Z - 2e-5 * Y + 3e-5 * X
+    rng = np.random.default_rng(1)
+    pz, py, px = rng.uniform(0, 6000, 50), rng.uniform(8271000, 8278000, 50), rng.uniform(382000, 389000, 50)
+    got = E.interp_cube(cube, z, y, x, pz, py, px)
+    assert np.allclose(got, 0.001 * pz - 2e-5 * py + 3e-5 * px)
+
+
 def test_los_unit_norm():
     rng = np.random.default_rng(0)
     t, a = rng.uniform(0.3, 0.8, 100), rng.uniform(0, 2 * np.pi, 100)

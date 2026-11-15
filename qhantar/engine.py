@@ -100,6 +100,28 @@ def layover_shadow(slope, aspect, u_los):
     return layover, shadow
 
 
+def interp_cube(cube, z_axis, y_axis, x_axis, z, y, x):
+    """Trilinear interpolation of a (nz, ny, nx) cube on regular axes at points (z, y, x).
+
+    Axes may be ascending or descending. Points outside the cube are clamped to the edge cell
+    and extrapolated linearly; NaN corners propagate (outside the product's valid geometry).
+    """
+    def frac(axis, v):
+        f = (v - axis[0]) / (axis[1] - axis[0])
+        i = np.clip(np.floor(np.nan_to_num(f)).astype(np.int64), 0, axis.size - 2)  # NaN stays NaN via f - i
+        return i, f - i
+
+    iz, tz = frac(z_axis, z)
+    iy, ty = frac(y_axis, y)
+    ix, tx = frac(x_axis, x)
+    out = 0.0
+    for dz, wz in ((0, 1 - tz), (1, tz)):
+        for dy, wy in ((0, 1 - ty), (1, ty)):
+            for dx, wx in ((0, 1 - tx), (1, tx)):
+                out = out + cube[iz + dz, iy + dy, ix + dx] * (wz * wy * wx)
+    return out
+
+
 def classify(S, coh, valid, cc_valid, layover, shadow, slope,
              s_min=DEFAULTS["s_min"], coh_min=DEFAULTS["coh_min"],
              slope_min_deg=DEFAULTS["slope_min_deg"]):

@@ -11,3 +11,9 @@ Minor decisions taken without stopping, with the reason.
 - Minimum slope for a defined downhill direction: `slope_min_deg = 2.0` (configurable). Below it the pixel is state 0, reason "flat".
 - Low sensitivity AND low coherence at the same time: state 0, reason code 8 (not covered by the master document's table).
 - GUNW contains no layover/shadow layer; the spec lists `layover_percentage`/`shadow_percentage` only as possible mask attributes, and they are absent in this file. Layover/shadow come from QHANTAR's own range-plane model.
+- Full-scene GeoTIFFs go to `results/<granule>/full/` (about 90 MB+, regenerable, git-ignored). The La Paz crop GeoTIFFs (`geotiff/`), web PNGs and `results.json` are committed.
+- Aspect is computed on the UTM grid (grid north) while the LOS is in true-north ENU. UTM meridian convergence over the scene is -0.61° to +0.35°; not corrected. Its effect on S is below ~0.01 and it is listed as a limitation.
+- The geoid correction (EGM2008, via PROJ network grid) is applied even though its effect on the LOS is ~2e-5; it costs nothing and removes a question.
+- Geoid N sampled every 25 pixels (2 km) and held constant within each block (N varies ~20 m over 300 km, so the block error is well below 1 m).
+- Web PNG colour ranges: phase ±24 rad (RdBu), coherence 0-1 (magma), |S| 0-1 (viridis), slope 0-45° (cividis), aspect 0-360° (twilight). State colours from the Okabe-Ito palette: 1 blue #0072B2, 2 vermillion #D55E00, 3 yellow #F0E442, 0 grey #999999 (semi-transparent).
+- Radar footprint = pixels whose mask low byte has at least one non-zero subswath digit. The water digit is set even outside the acquired frame (low byte 100), so it cannot define the footprint (bug found on the first real run: Lake Titicaca outside the frame was counted as nodata).

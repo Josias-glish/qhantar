@@ -1,0 +1,784 @@
+{
+ "qhantar_version": "0.1.0",
+ "generated_utc": "2026-11-15T04:23:52Z",
+ "provenance": {
+  "granule": "NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T102436_20261020T102402_20261020T102436_P05023_N_F_J_001",
+  "source": "NASA/JPL NISAR L2 GUNW via ASF DAAC",
+  "collection": "NISAR_L2_GUNW_PROVISIONAL_V1",
+  "download_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GUNW_PROVISIONAL_V1/NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T102436_20261020T102402_20261020T102436_P05023_N_F_J_001/NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T102436_20261020T102402_20261020T102436_P05023_N_F_J_001.h5",
+  "doi": "10.5067/NIL2GUNW-P1",
+  "crid": "P05023",
+  "maturity": "PROVISIONAL",
+  "maturity_note": "PROVISIONAL (CRID P05023). ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-14.",
+  "reference_acquisition": [
+   "2026-10-08T10:24:02.000000000",
+   "2026-10-08T10:24:36.999342105"
+  ],
+  "secondary_acquisition": [
+   "2026-10-20T10:24:02.000000000",
+   "2026-10-20T10:24:36.999342105"
+  ],
+  "orbit_pass": "Ascending",
+  "look_direction": "Left",
+  "track": 118,
+  "frame": 169,
+  "frequency": [
+   "A"
+  ],
+  "polarization": "HH",
+  "product_processing_utc": "2026-10-22T06:53:28",
+  "product_version": "1.0.11",
+  "product_spec_version": "1.5.0",
+  "grid": {
+   "epsg": 32719,
+   "spacing_m": 80.0,
+   "shape": [
+    4023,
+    4149
+   ]
+  },
+  "layers_used": {
+   "phase": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/unwrappedPhase",
+   "coherence": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/coherenceMagnitude",
+   "connected_components": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/connectedComponents",
+   "mask": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/mask",
+   "losUnitVectorX": "/science/LSAR/GUNW/metadata/radarGrid/losUnitVectorX",
+   "losUnitVectorY": "/science/LSAR/GUNW/metadata/radarGrid/losUnitVectorY",
+   "incidenceAngle": "/science/LSAR/GUNW/metadata/radarGrid/incidenceAngle"
+  },
+  "dem": {
+   "name": "Copernicus GLO-30 DEM (EGM2008 heights)",
+   "source": "https://copernicus-dem-30m.s3.amazonaws.com/",
+   "tiles": [
+    "Copernicus_DSM_COG_10_S16_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S16_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S16_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W070_00_DEM.tif"
+   ],
+   "resampling": "average to the 80 m GUNW grid",
+   "vertical": "converted to WGS84 ellipsoidal height with EGM2008 (PROJ) before interpolating the geometry cubes",
+   "product_dem_for_reference": "Digital Elevation Model (DEM) for the NASA-ISRO NISAR mission, version 1.2, based on the Copernicus DEM 30-m (2023_1), referenced to the WGS84 ellipsoid. This digital elevation model (DEM) was prepare"
+  }
+ },
+ "parameters": {
+  "s_min": 0.3,
+  "coh_min": 0.5,
+  "slope_min_deg": 2.0,
+  "connected_component_invalid_value": 0,
+  "validity": "mask low byte: both subswath digits > 0 and water digit 0; finite phase, coherence, DEM and LOS"
+ },
+ "conventions": {
+  "enu": true,
+  "aspect": "downhill azimuth, clockwise from north",
+  "los": "target to sensor",
+  "S_positive": "downhill motion projects towards the sensor"
+ },
+ "states": {
+  "1": "interpretable",
+  "2": "visible_incoherent",
+  "3": "coherent_low_sensitivity",
+  "0": "not_observable_or_invalid"
+ },
+ "reasons": {
+  "0": "interpretable",
+  "1": "visible_incoherent",
+  "2": "coherent_low_sensitivity",
+  "3": "nodata",
+  "4": "layover",
+  "5": "shadow",
+  "6": "flat",
+  "7": "invalid_component",
+  "8": "low_sensitivity_and_low_coherence"
+ },
+ "colors": {
+  "state": {
+   "0": "#999999",
+   "1": "#0072B2",
+   "2": "#D55E00",
+   "3": "#F0E442"
+  },
+  "reason": {
+   "0": "#0072B2",
+   "1": "#D55E00",
+   "2": "#F0E442",
+   "3": "#000000",
+   "4": "#CC79A7",
+   "5": "#56B4E9",
+   "6": "#E5E5E5",
+   "7": "#009E73",
+   "8": "#7F7F7F"
+  }
+ },
+ "fractions": {
+  "scene_footprint": {
+   "states": {
+    "n_pixels": 8972101,
+    "fractions": {
+     "interpretable": 0.3794111323535034,
+     "visible_incoherent": 0.038527653667741815,
+     "coherent_low_sensitivity": 0.19726527822190143,
+     "not_observable_or_invalid": 0.3847959357568534
+    },
+    "counts": {
+     "interpretable": 3404115,
+     "visible_incoherent": 345674,
+     "coherent_low_sensitivity": 1769884,
+     "not_observable_or_invalid": 3452428
+    }
+   },
+   "reasons": {
+    "n_pixels": 8972101,
+    "fractions": {
+     "interpretable": 0.3794111323535034,
+     "visible_incoherent": 0.038527653667741815,
+     "coherent_low_sensitivity": 0.19726527822190143,
+     "nodata": 0.03980606103297321,
+     "layover": 0.00599837206469254,
+     "shadow": 8.693615910030438e-05,
+     "flat": 0.3034770785571852,
+     "invalid_component": 0.023592244447537984,
+     "low_sensitivity_and_low_coherence": 0.011835243495364129
+    },
+    "counts": {
+     "interpretable": 3404115,
+     "visible_incoherent": 345674,
+     "coherent_low_sensitivity": 1769884,
+     "nodata": 357144,
+     "layover": 53818,
+     "shadow": 780,
+     "flat": 2722827,
+     "invalid_component": 211672,
+     "low_sensitivity_and_low_coherence": 106187
+    }
+   }
+  },
+  "la_paz_crop": {
+   "states": {
+    "n_pixels": 420046,
+    "fractions": {
+     "interpretable": 0.35460163886812396,
+     "visible_incoherent": 0.08618341800659927,
+     "coherent_low_sensitivity": 0.23553134656680458,
+     "not_observable_or_invalid": 0.3236835965584722
+    },
+    "counts": {
+     "interpretable": 148949,
+     "visible_incoherent": 36201,
+     "coherent_low_sensitivity": 98934,
+     "not_observable_or_invalid": 135962
+    }
+   },
+   "reasons": {
+    "n_pixels": 420046,
+    "fractions": {
+     "interpretable": 0.35460163886812396,
+     "visible_incoherent": 0.08618341800659927,
+     "coherent_low_sensitivity": 0.23553134656680458,
+     "nodata": 0.0027735057588930737,
+     "layover": 0.0039495674283292785,
+     "shadow": 5.475590768630103e-05,
+     "flat": 0.2987577551030125,
+     "invalid_component": 0.0016069668560110084,
+     "low_sensitivity_and_low_coherence": 0.01654104550453998
+    },
+    "counts": {
+     "interpretable": 148949,
+     "visible_incoherent": 36201,
+     "coherent_low_sensitivity": 98934,
+     "nodata": 1165,
+     "layover": 1659,
+     "shadow": 23,
+     "flat": 125492,
+     "invalid_component": 675,
+     "low_sensitivity_and_low_coherence": 6948
+    }
+   }
+  }
+ },
+ "quality": {
+  "coherence_in_valid": {
+   "n": 8614957,
+   "min": 0.005545543506741524,
+   "p05": 0.3572344660758972,
+   "p25": 0.6084364652633667,
+   "median": 0.737281322479248,
+   "p75": 0.8506885170936584,
+   "p95": 0.9397722601890564,
+   "max": 0.9972453117370605
+  },
+  "unwrapped_phase_rad_in_valid": {
+   "n": 8614957,
+   "min": -21.466453552246094,
+   "p05": -11.869790649414062,
+   "p25": -4.699606895446777,
+   "median": 0.5538371801376343,
+   "p75": 7.8015923500061035,
+   "p95": 13.511438560485832,
+   "max": 23.300891876220703
+  },
+  "abs_S_in_valid": {
+   "n": 8614957,
+   "min": 7.784603250904354e-08,
+   "p05": 0.04672558159889446,
+   "p25": 0.23472045717569917,
+   "median": 0.45617655501688,
+   "p75": 0.6186390622322555,
+   "p95": 0.8037322196375768,
+   "max": 0.9999990038058937
+  },
+  "slope_deg_in_valid": {
+   "n": 8614957,
+   "min": 0.0,
+   "p05": 0.10557799758110811,
+   "p25": 1.263013691561995,
+   "median": 5.439234256322271,
+   "p75": 15.089909978720874,
+   "p95": 34.079230051537934,
+   "max": 72.76559099969921
+  },
+  "connected_component_values": {
+   "0": 7572891,
+   "1": 9118536
+  },
+  "layover_fraction_of_geometry_ok_footprint": 0.006099686127028664,
+  "shadow_fraction_of_geometry_ok_footprint": 8.90538347706964e-05
+ },
+ "checks": {
+  "los_norm_max_abs_deviation": 5.960464477539063e-08,
+  "los_horizontal_norm_squared_max": 0.5408196449279785,
+  "incidence_from_los_minus_cube_deg": {
+   "n": 8614957,
+   "min": -1.52587890625e-05,
+   "p05": -7.62939453125e-06,
+   "p25": -7.62939453125e-06,
+   "median": -3.814697265625e-06,
+   "p75": 0.0,
+   "p95": 0.0,
+   "max": 1.1444091796875e-05
+  },
+  "los_horizontal_azimuth_deg": {
+   "n": 8614957,
+   "min": 80.11908721923828,
+   "p05": 80.15254974365234,
+   "p25": 80.2123031616211,
+   "median": 80.29044342041016,
+   "p75": 80.39081573486328,
+   "p95": 80.50172424316406,
+   "max": 80.59683227539062
+  },
+  "flight_heading_from_alongTrack_deg": {
+   "n": 8614957,
+   "min": -11.391007423400879,
+   "p05": -11.303245735168456,
+   "p25": -11.172414779663086,
+   "median": -11.007464408874512,
+   "p75": -10.831175804138184,
+   "p95": -10.684782981872559,
+   "max": -10.57163143157959
+  },
+  "los_azimuth_minus_expected_for_look_side_deg": {
+   "n": 8614957,
+   "min": 1.16729736328125,
+   "p05": 1.1786956787109375,
+   "p25": 1.2221221923828125,
+   "median": 1.2957916259765625,
+   "p75": 1.3824615478515625,
+   "p95": 1.471282958984375,
+   "max": 1.511077880859375
+  },
+  "geoid_N_m": {
+   "n": 26726,
+   "min": 27.91732184786279,
+   "p05": 35.74529646968854,
+   "p25": 43.94500712288216,
+   "median": 44.7452897724067,
+   "p75": 45.713845271086875,
+   "p95": 46.667330014804904,
+   "max": 48.34393964302421
+  },
+  "los_x_change_if_geoid_ignored": {
+   "n": 8614957,
+   "min": 1.6987323760986328e-05,
+   "p05": 2.0563602447509766e-05,
+   "p25": 2.1517276763916016e-05,
+   "median": 2.2470951080322266e-05,
+   "p75": 2.3365020751953125e-05,
+   "p95": 2.396106719970703e-05,
+   "max": 2.4497509002685547e-05
+  },
+  "dem_finite_fraction_in_footprint": 1.0,
+  "utm_meridian_convergence_deg": {
+   "min": -0.6141672151575016,
+   "max": 0.3468723643709711
+  }
+ },
+ "regions": {
+  "la_paz_crop_bbox_lonlat": [
+   -68.4,
+   -16.75,
+   -67.9,
+   -16.3
+  ]
+ },
+ "web_layers": {
+  "lapaz_state": {
+   "file": "lapaz_state.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_reason": {
+   "file": "lapaz_reason.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_abs_sensitivity": {
+   "file": "lapaz_abs_sensitivity.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "viridis",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "lapaz_phase": {
+   "file": "lapaz_phase.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "RdBu_r",
+   "range": [
+    -24.0,
+    24.0
+   ]
+  },
+  "lapaz_coherence": {
+   "file": "lapaz_coherence.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "magma",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "lapaz_connected_components": {
+   "file": "lapaz_connected_components.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_slope": {
+   "file": "lapaz_slope.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "cividis",
+   "range": [
+    0,
+    45
+   ]
+  },
+  "lapaz_aspect": {
+   "file": "lapaz_aspect.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "twilight",
+   "range": [
+    0,
+    360
+   ]
+  },
+  "lapaz_hillshade": {
+   "file": "lapaz_hillshade.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.3
+    ],
+    [
+     -67.9003317609548,
+     -16.75021805881473
+    ],
+    [
+     -68.4,
+     -16.75021805881473
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_state": {
+   "file": "scene_state.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_reason": {
+   "file": "scene_reason.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_abs_sensitivity": {
+   "file": "scene_abs_sensitivity.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "viridis",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_phase": {
+   "file": "scene_phase.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "RdBu_r",
+   "range": [
+    -24.0,
+    24.0
+   ]
+  },
+  "scene_coherence": {
+   "file": "scene_coherence.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "magma",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_connected_components": {
+   "file": "scene_connected_components.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_slope": {
+   "file": "scene_slope.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "cividis",
+   "range": [
+    0,
+    45
+   ]
+  },
+  "scene_aspect": {
+   "file": "scene_aspect.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "twilight",
+   "range": [
+    0,
+    360
+   ]
+  },
+  "scene_hillshade": {
+   "file": "scene_hillshade.png",
+   "corners": [
+    [
+     -70.09431523595224,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -15.587389834688617
+    ],
+    [
+     -66.95016944816412,
+     -18.504707962072022
+    ],
+    [
+     -70.09431523595224,
+     -18.504707962072022
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    0,
+    1
+   ]
+  }
+ },
+ "h1": null
+}
