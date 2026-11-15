@@ -837,12 +837,138 @@
   "lower_median_coherence": true,
   "higher_invalid_component_fraction": true,
   "verdict": "supported",
+  "slope_matched_check": {
+   "method": "valid pixels reweighted to the slope distribution of the layover/shadow group, 5 deg bins",
+   "distorted_pixels_without_valid_counterpart": 0,
+   "valid_reweighted": {
+    "coherence_median": 0.5099225640296936,
+    "invalid_component_fraction": 0.20635538301349374
+   },
+   "per_bin_pairs_layover_shadow_vs_valid": [
+    {
+     "slope_deg": [
+      30.0,
+      35.0
+     ],
+     "n_distorted": 303,
+     "n_valid": 320124,
+     "coherence_median": [
+      0.5572355389595032,
+      0.656151294708252
+     ],
+     "invalid_component_fraction": [
+      0.1353135313531353,
+      0.12717571940872913
+     ]
+    },
+    {
+     "slope_deg": [
+      35.0,
+      40.0
+     ],
+     "n_distorted": 18093,
+     "n_valid": 205561,
+     "coherence_median": [
+      0.5856519341468811,
+      0.5817465782165527
+     ],
+     "invalid_component_fraction": [
+      0.1731056209583817,
+      0.1661550585957453
+     ]
+    },
+    {
+     "slope_deg": [
+      40.0,
+      45.0
+     ],
+     "n_distorted": 20227,
+     "n_valid": 82335,
+     "coherence_median": [
+      0.5594485998153687,
+      0.5036616921424866
+     ],
+     "invalid_component_fraction": [
+      0.20640727740149306,
+      0.20927916438938482
+     ]
+    },
+    {
+     "slope_deg": [
+      45.0,
+      50.0
+     ],
+     "n_distorted": 9541,
+     "n_valid": 25910,
+     "coherence_median": [
+      0.5448702573776245,
+      0.442526638507843
+     ],
+     "invalid_component_fraction": [
+      0.2154910386751913,
+      0.2509069857197993
+     ]
+    },
+    {
+     "slope_deg": [
+      50.0,
+      55.0
+     ],
+     "n_distorted": 4126,
+     "n_valid": 7520,
+     "coherence_median": [
+      0.5206969976425171,
+      0.41964882612228394
+     ],
+     "invalid_component_fraction": [
+      0.21061560833737275,
+      0.25638297872340426
+     ]
+    },
+    {
+     "slope_deg": [
+      55.0,
+      60.0
+     ],
+     "n_distorted": 1737,
+     "n_valid": 1648,
+     "coherence_median": [
+      0.44129812717437744,
+      0.4595513939857483
+     ],
+     "invalid_component_fraction": [
+      0.29360967184801384,
+      0.2196601941747573
+     ]
+    },
+    {
+     "slope_deg": [
+      60.0,
+      65.0
+     ],
+     "n_distorted": 472,
+     "n_valid": 281,
+     "coherence_median": [
+      0.35398390889167786,
+      0.4578964412212372
+     ],
+     "invalid_component_fraction": [
+      0.4067796610169492,
+      0.26334519572953735
+     ]
+    }
+   ],
+   "bins_with_lower_coherence": 3,
+   "bins_with_more_component_0": 4,
+   "bins_compared": 7
+  },
   "group_definition": "radar footprint, not water, both subswaths valid, DEM and LOS available; split by the model's layover/shadow flags only. Coherence and components not used for grouping.",
   "limitations": [
    "one scene, one interferometric pair (12 days, PROVISIONAL P05023)",
    "first-order single-pixel layover/shadow model, no passive layover or cast shadow",
    "layover and shadow groups are small relative to the valid group",
-   "no significance test: descriptive comparison only"
+   "no significance test: descriptive comparison only",
+   "the verdict uses the pre-registered unmatched comparison; the slope-matched check is reported next to it, not instead of it"
   ]
  },
  "h2": {

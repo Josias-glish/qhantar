@@ -57,8 +57,9 @@ Switch to *reason* for a second to show why each grey pixel is grey.
 **5 · Evidence passport (30 s).** "Every result carries its passport: granule, dates, CRID,
 maturity, DOI, DEM and parameters. We also tested a hypothesis. Pixels our model flags as layover
 or shadow have a median coherence of 0.557, against 0.738 for geometrically valid pixels. They
-also have 20.2 % invalid components, against 2.5 %. So the hypothesis is supported in this scene.
-But steep valid slopes are also worse, at 0.602, and we say so. An independent R-index agrees with our
+also have 20.2 % invalid components, against 2.5 %. So the test we fixed in advance says yes.
+Then we compared them with valid pixels on the same slopes, and the gap disappears: 0.510 and 20.6 %.
+The difference is steepness, not layover, and we say so. An independent R-index agrees with our
 layover and shadow flags. And the one landslide catalogue we could find is too coarse to test against, so we say that too."
 
 **Close (10 s).** "QHANTAR: knowing where to trust the radar, and where not."
@@ -102,7 +103,7 @@ separately.
   state precedence, thresholds as parameters, and native LOS against the angle formulation.
 - Consistency checks on the real scene: LOS norm, incidence against the product cube, LOS azimuth
   against the look side, and S by aspect against the analytical values.
-- H1: supported, with a steep-slope confound.
+- H1: supported unmatched, not supported once slope is matched.
 
 What is missing: validation with users, and a test against mapped landslide outlines. H4 with the
 NASA catalogue could not test it (1 to 10 km location accuracy).
@@ -111,8 +112,8 @@ NASA catalogue could not test it (1 to 10 km location accuracy).
 No. One line of sight measures one projection.
 
 **What if the data contradict the hypothesis?**
-We publish it. H1 came out supported, but we report the confound that weakens it, and the
-thresholds were not tuned to make it pass.
+We publish it. H1 passed its pre-registered test, then failed the fairer slope-matched check, and
+both are on the page. The thresholds were not tuned to make anything pass.
 
 **Why provisional data?**
 It was the only NISAR GUNW over La Paz available when we searched. The newer CRID P05036, which fixes

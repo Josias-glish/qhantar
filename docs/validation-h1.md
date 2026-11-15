@@ -26,15 +26,45 @@ from the component statistic.
 | Geometrically valid | 8,561,452 | 0.738 | 0.610 – 0.851 | 0.01 % | 2.5 % |
 | *Context: valid with slope ≥ 30°* | 643,428 | 0.602 | 0.348 – 0.806 | 0.03 % | 15.7 % |
 
-**In this scene H1 is supported:** the layover/shadow group has a lower median coherence
+**The pre-registered comparison supports H1:** the layover/shadow group has a lower median coherence
 (0.557 vs 0.738) and a much higher fraction of invalid components (20.2 % vs 2.5 %).
+
+## Slope-matched check (added 2026-11-15)
+
+The headline groups have very different slopes, and steep ground decorrelates for reasons that have
+nothing to do with layover. So the valid pixels were reweighted, in 5° slope bins, to the slope
+distribution of the layover/shadow group (every layover/shadow pixel has valid pixels in its bin).
+This check was added after the first result; the verdict above stays the pre-registered one, and this
+is reported next to it.
+
+| Group | Median coherence | Fraction with component 0 |
+| --- | ---: | ---: |
+| Layover or shadow | 0.557 | 20.2 % |
+| Geometrically valid, reweighted to the same slopes | 0.510 | 20.6 % |
+
+**Once slope is matched, H1 is not supported.** Bin by bin (7 bins with at least 100 pixels in both
+groups, 30° to 65°), layover/shadow has the lower median coherence in only 3 bins and the higher
+component-0 fraction in 4.
+
+| Slope | Layover/shadow pixels | Valid pixels | Median coherence (L/S vs valid) | Component 0 (L/S vs valid) |
+| --- | ---: | ---: | --- | --- |
+| 30–35° | 303 | 320,124 | 0.557 vs 0.656 | 13.5 % vs 12.7 % |
+| 35–40° | 18,093 | 205,561 | 0.586 vs 0.582 | 17.3 % vs 16.6 % |
+| 40–45° | 20,227 | 82,335 | 0.559 vs 0.504 | 20.6 % vs 20.9 % |
+| 45–50° | 9,541 | 25,910 | 0.545 vs 0.443 | 21.5 % vs 25.1 % |
+| 50–55° | 4,126 | 7,520 | 0.521 vs 0.420 | 21.1 % vs 25.6 % |
+| 55–60° | 1,737 | 1,648 | 0.441 vs 0.460 | 29.4 % vs 22.0 % |
+| 60–65° | 472 | 281 | 0.354 vs 0.458 | 40.7 % vs 26.3 % |
+
+Reading: on slopes up to 55°, layover/shadow pixels are about as coherent as valid ones, or more.
+Only above 55° do they look worse, and those bins hold few pixels. In this scene the layover flag adds
+little information about coherence beyond the slope itself. This does not make the flag wrong (H2
+confirms the geometry); it means low coherence there is better explained by steepness.
 
 ## What this does not show
 
-- **Part of the difference is a steep-slope effect.** Geometrically valid pixels on slopes ≥ 30°
-  also have lower coherence (0.602) and more invalid components (15.7 %). Layover/shadow pixels are
-  still worse than that steep-slope context group, but the gap is much smaller than in the headline
-  comparison. A slope-matched comparison would be the fairer test; it was not run.
+- **The difference is a steep-slope effect.** See the slope-matched check below: at equal slope,
+  layover/shadow pixels are not worse than valid ones.
 - One scene and one 12-day pair, PROVISIONAL processing (P05023).
 - The layover/shadow model is first-order and per pixel; passive layover and cast shadow are not modelled.
 - The shadow group is tiny (780 pixels); its numbers are fragile.

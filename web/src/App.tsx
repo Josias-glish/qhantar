@@ -360,6 +360,9 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
                       <td className="num">{int(g.n_pixels, lang)}</td><td className="num">{num(g.coherence_median)}</td>
                       <td className="num">{pct(g.invalid_component_fraction)}</td></tr>
                   ))}
+                  {h.slope_matched_check && <tr><td>{t.passport.matched}</td><td className="num">—</td>
+                    <td className="num">{num(h.slope_matched_check.valid_reweighted.coherence_median)}</td>
+                    <td className="num">{pct(h.slope_matched_check.valid_reweighted.invalid_component_fraction)}</td></tr>}
                 </tbody>
               </table>
               <p><strong>{t.passport.verdict}:</strong> <span className="badge">{h.verdict}</span></p>

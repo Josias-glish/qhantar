@@ -61,12 +61,13 @@ Reading a single interferogram without checking both leads to wrong conclusions.
 
 Median coherence of valid pixels is 0.737.
 
-Hypothesis H1 is supported in this scene. Pixels flagged as layover or shadow have:
+Hypothesis H1 passes its pre-registered comparison. Pixels flagged as layover or shadow have:
 
 - a median coherence of 0.557, against 0.738 for geometrically valid pixels;
 - 20.2 % invalid connected components, against 2.5 %.
 
-Valid slopes steeper than 30° are also worse (0.602), so part of the effect is slope steepness.
+But once valid pixels are reweighted to the same slopes, they score 0.510 and 20.6 %, no better than
+layover/shadow. The difference comes from slope steepness, not from layover or shadow.
 H2: the layover and shadow flags are consistent with an independent R-index (κ 0.880 and 0.838).
 H3: the native LOS changes the state of 3.1 % of the pixels compared with a heading/incidence approximation.
 H4: not testable with the NASA Global Landslide Catalog (4 events, 1 to 10 km location accuracy); reported as context.

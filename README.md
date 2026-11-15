@@ -56,7 +56,7 @@ El Alto altiplano), not radar failures. Layover is 0.60 % and shadow 0.01 % of t
 Median coherence of valid pixels: 0.737; median \|S\|: 0.456.
 
 **H1** (layover/shadow pixels show lower coherence and more invalid components than geometrically
-valid pixels): **supported in this scene**, with a confound.
+valid pixels): **supported in the pre-registered comparison, but not once slope is matched.**
 
 | Group | Pixels | Median coherence | Component 0 |
 | --- | ---: | ---: | ---: |
@@ -64,7 +64,9 @@ valid pixels): **supported in this scene**, with a confound.
 | Geometrically valid | 8,561,452 | 0.738 | 2.5 % |
 | Context: valid, slope ≥ 30° | 643,428 | 0.602 | 15.7 % |
 
-Part of the difference is a steep-slope effect; see [`docs/validation-h1.md`](docs/validation-h1.md).
+When the valid pixels are reweighted to the same slope distribution as the layover/shadow group, they have
+a median coherence of 0.510 and 20.6 % component 0, no better than layover/shadow (0.557, 20.2 %). The
+headline gap is a steep-slope effect, not a layover/shadow effect; see [`docs/validation-h1.md`](docs/validation-h1.md).
 H2: QHANTAR's layover and shadow flags are consistent with an independent R-index implementation
 (Cohen's κ 0.880 and 0.838; [`docs/validation-h2.md`](docs/validation-h2.md)). H3: replacing the native LOS
 with a heading/incidence approximation changes the state of 3.1 % of the pixels, 1.7 % from the look azimuth
@@ -133,7 +135,7 @@ docs/master-document.es.md   the team's foundational document (Spanish)
 | Real NISAR GUNW downloaded with provenance | Done |
 | Engine + 20 analytical tests | Done |
 | Four-state map, separate evidence layers, `results.json` | Done |
-| H1 | Done: supported, with a steep-slope confound |
+| H1 | Done: supported unmatched; not supported once slope is matched |
 | H2 (R-index contrast) | Done: consistent (κ 0.880 layover, 0.838 shadow) |
 | H3 (native LOS vs heading/incidence) | Done: 3.1 % of pixels change state |
 | H4 (known active zones) | Not testable with the NASA catalogue; context only |
