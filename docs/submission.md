@@ -89,8 +89,8 @@ measured quality. We do not claim to be the first.
 
 ## Links
 
-- Repository: `<GITHUB REPOSITORY URL>`
-- Web app: `<GITHUB PAGES URL>`
+- Repository: https://github.com/Josias-glish/qhantar
+- Web app: https://qhantar.vercel.app (static build of `web/`, hosted on Vercel)
 - Method: `docs/method.md` · H1: `docs/validation-h1.md` · AI usage: `docs/ai-usage.md`
 
 ## Tools and AI

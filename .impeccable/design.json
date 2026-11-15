@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T00:00:00Z",
+  "title": "Design System: QHANTAR",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Map Paper", "canonical": "#ECEDE6", "tonalRamp": ["#2b2c20", "#4d503a", "#6f7453", "#91966e", "#acb091", "#c7cab5", "#dfe1d5", "#f4f4f0"] },
+      "paper-hi": { "role": "neutral", "displayName": "Paper Light", "canonical": "#F5F6F1", "tonalRamp": ["#2b2f1e", "#4e5436", "#70794e", "#929d67", "#adb58c", "#c8cdb1", "#e0e3d4", "#f4f5ef"] },
+      "paper-lo": { "role": "neutral", "displayName": "Paper Shade", "canonical": "#E1E3DA", "tonalRamp": ["#292c21", "#4a4e3b", "#6b7156", "#8c9371", "#a8ae94", "#c4c8b6", "#dee0d6", "#f3f4f0"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1F2421", "tonalRamp": ["#232926", "#404a44", "#5c6b62", "#798b80", "#9aa89f", "#bac4be", "#d9dedb", "#f1f3f2"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink Muted", "canonical": "#4A524E", "tonalRamp": ["#242826", "#414845", "#5e6963", "#7c8882", "#9ca5a1", "#bcc3bf", "#d9dddb", "#f2f3f2"] },
+      "rule": { "role": "neutral", "displayName": "Rule Grey", "canonical": "#8E928A", "tonalRamp": ["#262825", "#454742", "#636760", "#82867e", "#a1a49d", "#bfc2bd", "#dbddda", "#f2f3f2"] },
+      "siena": { "role": "primary", "displayName": "Siena", "canonical": "#9A4B2C", "tonalRamp": ["#3c1d11", "#6b341f", "#9b4b2c", "#c7643d", "#d58a6c", "#e3b09c", "#efd3c7", "#f9efeb"] },
+      "siena-hi": { "role": "primary", "displayName": "Siena Light", "canonical": "#B35A36", "tonalRamp": ["#3b1e12", "#6a3520", "#994d2e", "#c5663f", "#d38b6e", "#e1b19d", "#eed3c8", "#f9efeb"] },
+      "ocre": { "role": "tertiary", "displayName": "Ocre", "canonical": "#C8A15A", "tonalRamp": ["#392c13", "#674f22", "#957232", "#c19444", "#d0ae71", "#dfc99f", "#ede0c9", "#f9f4ec"] },
+      "pizarra": { "role": "secondary", "displayName": "Pizarra", "canonical": "#3F4D5C", "tonalRamp": ["#1f262d", "#384452", "#516376", "#6b8199", "#8fa0b2", "#b3bfcb", "#d5dbe2", "#f0f2f5"] },
+      "contour": { "role": "neutral", "displayName": "Contour", "canonical": "#B9AE96", "tonalRamp": ["#2e291f", "#534a37", "#776b50", "#9b8b69", "#b4a88e", "#ccc4b2", "#e2ded4", "#f5f3f0"] },
+      "on-dark": { "role": "neutral", "displayName": "On Dark", "canonical": "#F1F1EA", "tonalRamp": ["#2e2e1f", "#535337", "#777750", "#9b9b69", "#b4b48e", "#ccccb3", "#e2e2d4", "#f5f5f0"] }
+    },
+    "dataColors": {
+      "note": "Read from results.json at runtime; never UI colour.",
+      "state": { "1": "#0072B2", "2": "#D55E00", "3": "#F0E442", "0": "#999999" },
+      "ramps": ["viridis", "magma", "RdBu_r", "cividis", "twilight", "gray"]
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Sheet Title", "purpose": "QHANTAR on the cover; the header mark repeats it at 1.25rem, +0.16em." },
+      "figure": { "displayName": "Figure", "purpose": "One monumental locale-formatted number per handover beat." },
+      "headline": { "displayName": "Section Title", "purpose": "Cover section titles and the passport title." },
+      "lede": { "displayName": "Lede", "purpose": "Hero question and caption bands." },
+      "title": { "displayName": "Beat Title", "purpose": "Handover beat titles and side-margin view titles." },
+      "body": { "displayName": "Body", "purpose": "Reading text." },
+      "label": { "displayName": "Margin Label", "purpose": "Legend titles, table headers, marginalia keys, badges, side-margin h3." },
+      "mono": { "displayName": "Marginalia Mono", "purpose": "Granule ids, CRID, EPSG, grid spacing, tick values only." }
+    },
+    "shadows": [
+      { "name": "hero-caption", "value": "0 1px 2px rgba(10,12,11,0.9), 0 3px 12px rgba(10,12,11,0.7), 0 10px 40px rgba(10,12,11,0.6)", "purpose": "Text shadow for hero caption legibility over the illustration only." },
+      { "name": "neatline", "value": "border: 1px solid; outline: 1px solid; outline-offset: 3px to 5px", "purpose": "The system's depth device: plates, map, legend cells, marginalia." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "State changes, entrances, beat crossfades." },
+      { "name": "ease-io", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Loops: contour field breathing, scroll cue bob." },
+      { "name": "settle", "value": "opacity 0 and translateY(6px) to rest, 0.6s ease-out", "purpose": "Legend cells and side-margin children, staggered 60ms." },
+      { "name": "reveal", "value": "opacity 0 and translateY(18px) to rest, 0.8s/0.9s ease-out, staggered 90ms", "purpose": "Below-the-fold sections, once." },
+      { "name": "handover-wipe", "value": "DEM area-levelled contour mask over hand-over progress 0.03 to 0.16", "purpose": "Signature illustration-to-data handover; edge drawn in siena." },
+      { "name": "reduced-motion", "value": "all animation and transition removed; content set at rest; static hero", "purpose": "prefers-reduced-motion: reduce." }
+    ],
+    "breakpoints": [
+      { "name": "static-hero", "value": "(max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce)" },
+      { "name": "single-column", "value": "960px" },
+      { "name": "phone", "value": "720px" },
+      { "name": "short", "value": "max-height 560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action: Open the map, download results.json.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Open the map</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.15rem; border: 1px solid #3F4D5C; background: transparent; color: #1F2421; font: 600 1rem/1.5 Archivo, system-ui, sans-serif; letter-spacing: 0.02em; border-radius: 2px; cursor: pointer; transition: background-color 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary { background: #9A4B2C; border-color: #9A4B2C; color: #F5F6F1; } .ds-btn-primary:hover { background: #B35A36; border-color: #B35A36; } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid #9A4B2C; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ruled outline button for secondary routes (evidence passport).",
+      "html": "<button class=\"ds-btn-sec\">See the evidence passport</button>",
+      "css": ".ds-btn-sec { padding: 0.7rem 1.15rem; border: 1px solid #3F4D5C; background: transparent; color: #1F2421; font: 600 1rem/1.5 Archivo, system-ui, sans-serif; letter-spacing: 0.02em; border-radius: 2px; cursor: pointer; transition: background-color 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-btn-sec:hover { background: #E1E3DA; } .ds-btn-sec:focus-visible { outline: 2px solid #9A4B2C; outline-offset: 3px; }"
+    },
+    {
+      "name": "Segmented Choice",
+      "kind": "input",
+      "refersTo": "choice-segment",
+      "description": "Radio group as ruled cells; selected cell inverts to ink.",
+      "html": "<fieldset class=\"ds-choice\"><label class=\"ds-on\"><input type=\"radio\" name=\"r\" checked>La Paz</label><label><input type=\"radio\" name=\"r\">Full scene</label></fieldset>",
+      "css": ".ds-choice { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; font-family: Archivo, system-ui, sans-serif; } .ds-choice label { border: 1px solid #8E928A; margin: 0 -1px -1px 0; padding: 0.35rem 0.65rem; font-size: 0.86rem; background: #F5F6F1; color: #1F2421; cursor: pointer; transition: background-color 0.3s cubic-bezier(0.16,1,0.3,1); } .ds-choice label:hover { background: #ECEDE6; } .ds-choice label.ds-on { background: #1F2421; border-color: #1F2421; color: #F5F6F1; position: relative; z-index: 1; } .ds-choice label:focus-within { outline: 2px solid #9A4B2C; outline-offset: 2px; z-index: 2; } .ds-choice input { position: absolute; opacity: 0; pointer-events: none; }"
+    },
+    {
+      "name": "View Tabs",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Five numbered views with a siena underline on the active tab.",
+      "html": "<nav class=\"ds-nav\"><button class=\"ds-on\"><span class=\"ds-step\">1</span>Mission</button><button><span class=\"ds-step\">2</span>Mountain</button><button><span class=\"ds-step\">3</span>Radar</button></nav>",
+      "css": ".ds-nav { display: flex; border-top: 1px solid #E1E3DA; background: #F5F6F1; font-family: Archivo, system-ui, sans-serif; } .ds-nav button { font: inherit; font-size: 0.9rem; border: 0; border-right: 1px solid #E1E3DA; background: transparent; color: #4A524E; padding: 0.55rem 0.9rem 0.45rem; cursor: pointer; position: relative; transition: color 0.3s cubic-bezier(0.16,1,0.3,1); } .ds-nav button::after { content: ''; position: absolute; left: 0.9rem; right: 0.9rem; bottom: 0; height: 3px; background: #9A4B2C; transform: scaleX(0); transform-origin: left; transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); } .ds-nav button:hover { color: #1F2421; } .ds-nav button.ds-on { color: #1F2421; font-weight: 650; } .ds-nav button.ds-on::after { transform: scaleX(1); } .ds-nav button:focus-visible { outline: 2px solid #9A4B2C; outline-offset: 3px; } .ds-step { display: inline-block; width: 1.4em; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #9A4B2C; }"
+    },
+    {
+      "name": "Provenance Chip",
+      "kind": "chip",
+      "refersTo": "provenance-chip",
+      "description": "Sits on the image it describes; names illustration, DEM or NISAR.",
+      "html": "<div class=\"ds-chip-host\"><span class=\"ds-chip\"><span class=\"ds-dot\"></span>AI-generated illustration · not data</span></div>",
+      "css": ".ds-chip-host { background: #3a3229; padding: 24px; } .ds-chip { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.7rem; font: 0.78rem/1.5 Archivo, system-ui, sans-serif; letter-spacing: 0.04em; background: rgba(14,16,15,0.62); border: 1px solid rgba(241,241,234,0.25); color: #F1F1EA; backdrop-filter: blur(8px); } .ds-dot { width: 7px; height: 7px; border-radius: 50%; background: #C8A15A; transition: background-color 0.4s cubic-bezier(0.16,1,0.3,1); } .ds-chip:hover .ds-dot { background: #F1F1EA; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Square label-type tag for maturity and verdicts.",
+      "html": "<span class=\"ds-badge\">Real NISAR data · PROVISIONAL</span>",
+      "css": ".ds-badge { display: inline-block; padding: 0.12rem 0.5rem; border: 1px solid #3F4D5C; background: #ECEDE6; color: #1F2421; font: 650 0.76rem/1.5 Archivo, system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Legend Cell",
+      "kind": "card",
+      "refersTo": "legend-cell",
+      "description": "Ruled map-margin cell with neatline and offset outline; swatches carry data colours.",
+      "html": "<div class=\"ds-legend\"><div class=\"ds-legend-title\">Legend</div><div class=\"ds-row\"><span class=\"ds-sw\" style=\"background:#0072B2\"></span><span><strong>1 · Interpretable</strong> 35.5 %</span></div><div class=\"ds-row\"><span class=\"ds-sw\" style=\"background:#999999\"></span><span><strong>0 · Not observable</strong> 32.4 %</span></div></div>",
+      "css": ".ds-legend { background: #F5F6F1; border: 1px solid #1F2421; outline: 1px solid #1F2421; outline-offset: 3px; padding: 0.65rem 0.8rem; font: 0.85rem/1.5 Archivo, system-ui, sans-serif; color: #1F2421; max-width: 290px; margin: 6px; } .ds-legend-title { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: #4A524E; margin-bottom: 0.4rem; padding-bottom: 0.3rem; border-bottom: 1px solid #E1E3DA; } .ds-row { display: flex; gap: 0.5rem; align-items: flex-start; margin: 0.3rem 0; } .ds-sw { flex: none; width: 14px; height: 14px; border: 1px solid rgba(31,36,33,0.45); margin-top: 3px; }"
+    },
+    {
+      "name": "Marginalia Table",
+      "kind": "card",
+      "refersTo": "legend-cell",
+      "description": "Provenance as a ruled definition grid; machine strings in mono.",
+      "html": "<dl class=\"ds-marg\"><dt>Granule</dt><dd class=\"ds-mono\">NISAR_L2_PR_GUNW_...</dd><dt>Maturity</dt><dd>PROVISIONAL · P05023</dd></dl>",
+      "css": ".ds-marg { display: grid; grid-template-columns: max-content minmax(0,1fr); margin: 6px; border: 1px solid #3F4D5C; outline: 1px solid #3F4D5C; outline-offset: 4px; background: #F5F6F1; font: 1rem/1.5 Archivo, system-ui, sans-serif; color: #1F2421; } .ds-marg dt, .ds-marg dd { margin: 0; padding: 0.6rem 0.9rem; border-bottom: 1px solid #E1E3DA; } .ds-marg dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: #4A524E; border-right: 1px solid #E1E3DA; } .ds-marg dt:last-of-type, .ds-marg dd:last-of-type { border-bottom: 0; } .ds-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; word-break: break-all; }"
+    },
+    {
+      "name": "Note",
+      "kind": "card",
+      "refersTo": "note",
+      "description": "Caveat box: prior work, phase in radians, slow motion.",
+      "html": "<p class=\"ds-note\">Phase in radians, not displacement.</p>",
+      "css": ".ds-note { background: #E1E3DA; border: 1px solid #8E928A; color: #1F2421; padding: 0.55rem 0.8rem; font: 0.88rem/1.5 Archivo, system-ui, sans-serif; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Hoja de puna",
+    "overview": "The site is a survey sheet of one radar observation. Every surface reads as part of a printed topographic sheet: a cool grey-green map paper, a thin black neatline doubled by an offset outline, legend cells ruled like a map margin, and provenance printed as marginalia beside the plate it describes. It deliberately refuses the dark mission-control look that satellite projects ship; the only dark field on the site is the AI hero, and it is dark because it is a photograph-like illustration, not because the brand is.\n\nDensity is low on the cover (one monumental figure per scroll beat) and moderate in the five map views, where a fixed 400px side margin carries text, controls and tables beside a full-height map. The voice is sober: wide, spaced Archivo capitals name the sheet; ordinary Archivo carries the reading; JetBrains Mono appears only where a surveyor would print machine strings (granule ids, EPSG, CRID).\n\nHonesty is a visual rule, not only a copy rule. What is illustration is labelled as illustration on the image itself, what is data names its source on the image itself, and the switch between the two is drawn from the real terrain.",
+    "keyCharacteristics": [
+      "Cool map paper ground with a faint, slowly breathing contour field behind everything.",
+      "Neatlines: 1px pizarra or ink border plus a 1px outline offset 3 to 5px; 3px double rules for sheet margins.",
+      "One action colour (siena), one marker colour (ocre), one structure colour (pizarra).",
+      "Data colours come from `results.json` and live only inside data: plates, swatches, bars, colour ramps.",
+      "Square corners everywhere except a 2px softening on buttons.",
+      "Scroll-scrubbed cover with a DEM-driven contour handover; static, fully legible fallback behind five media gates."
+    ],
+    "rules": [
+      { "name": "The Data Ink Rule", "body": "Data colours appear only inside data: map layers, plates, swatches, proportion bars and colour bars. They are never reused as UI colour, and UI colours never enter a data legend.", "section": "colors" },
+      { "name": "The One Action Rule", "body": "Siena is reserved for what can be acted on or is currently active (buttons, the download, the active tab, focus). It is never a fill for surfaces or a decoration for headings.", "section": "colors" },
+      { "name": "The Cool Paper Rule", "body": "The ground is grey-green map paper (#ECEDE6 family), never cream, never dark. Darkness exists only inside the AI hero.", "section": "colors" },
+      { "name": "The Marginalia Mono Rule", "body": "JetBrains Mono is used only for machine strings a survey sheet prints in its margin: granule ids, CRID, EPSG, grid spacing, tick values. Never for headings, buttons or prose.", "section": "typography" },
+      { "name": "The Locale Number Rule", "body": "Every number is formatted with the UI locale (es-BO decimal comma in Spanish, en-US in English) and set with tabular figures in tables and figures. Phase is labelled and shown in radians, never converted to displacement.", "section": "typography" },
+      { "name": "The Five Gates Rule", "body": "The scroll-scrubbed hero turns into a static, fully set hero under any of five media gates: max-width 720px; portrait up to 1024px; portrait coarse pointer; landscape coarse pointer under 560px tall; prefers-reduced-motion. The gate strings are identical in CSS and in Cover.tsx and must stay so. Under 960px the handover shows the final real layer with the NISAR label and stacks its beats.", "section": "layout" },
+      { "name": "The Neatline Rule", "body": "A framed thing gets a neatline (border plus offset outline), never a drop shadow or a card lift.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do label any illustrative image on the image itself, in the footer and in its file metadata; the AI hero carries \"AI-generated illustration · not data\" on screen.",
+      "Do name the actual source on each layer's chip: the DEM on relief, NISAR only on NISAR layers, and switch away from \"illustration\" only when no illustration pixel remains.",
+      "Do frame plates, maps, legends and marginalia with a neatline (1px border plus 1px outline offset 3 to 5px) and close sheet margins with a 3px double pizarra rule.",
+      "Do format numbers in the UI locale (es-BO decimal comma) with tabular figures, and show phase in radians.",
+      "Do keep the five static-hero gate strings identical in CSS and script."
+    ],
+    "donts": [
+      "Don't reuse the state colours (#0072B2, #D55E00, #F0E442, #999999) or any data ramp as UI colour.",
+      "Don't use siena for surfaces, headings or decoration; it marks actions and the active state.",
+      "Don't print coordinates, grid or EPSG on the AI hero; located marginalia start at the real plate.",
+      "Don't set headings, buttons or prose in JetBrains Mono.",
+      "Don't use drop shadows, card lifts or rounded containers; depth is ruled, corners are square.",
+      "Don't move to a dark or cream ground outside the hero."
+    ]
+  }
+}

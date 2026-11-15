@@ -9,7 +9,11 @@
     "passport": "Pasaporte de evidencia"
   },
   "lang": "English",
-  "region": { "label": "Zona", "lapaz": "La Paz", "scene": "Escena completa" },
+  "region": {
+    "label": "Zona",
+    "lapaz": "La Paz",
+    "scene": "Escena completa"
+  },
   "opacity": "Opacidad de la capa",
   "real_data": "Datos reales de NISAR",
   "mission": {
@@ -27,7 +31,7 @@
       "No recupera las tres componentes del movimiento con una sola línea de visión.",
       "No garantiza que una zona «interpretable» tenga movimiento detectable."
     ],
-    "slow": "Una sola pareja de 12 días no puede presentarse como detector de deslizamientos lentos: 5 cm/año son unos 1.6 mm en 12 días, que pueden quedar por debajo del ruido de un interferograma.",
+    "slow": "Una sola pareja de 12 días no puede presentarse como detector de deslizamientos lentos: 5 cm/año son unos 1,6 mm en 12 días, que pueden quedar por debajo del ruido de un interferograma.",
     "product": "Producto analizado",
     "prior": "No es una idea nueva: la relación pendiente–línea de visión y los índices de visibilidad ya existen (Notti et al. 2010; van Natijne et al. 2022). QHANTAR los aplica a posteriori sobre una pareja NISAR concreta, con su geometría nativa y su calidad medida."
   },
@@ -131,5 +135,57 @@
     }
   },
   "basemap": "Mapa base © colaboradores de OpenStreetMap",
-  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Los resultados provienen de un único producto NISAR PROVISIONAL; cada cifra de esta página se lee de results.json."
+  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Los resultados provienen de un único producto NISAR PROVISIONAL; cada cifra de esta página se lee de results.json.",
+  "cover": {
+    "hero_label": "Portada: descenso ilustrado hacia una ladera andina",
+    "note_ai": "Ilustración generada con IA · no es un dato",
+    "note_data": "Datos NISAR reales · La Paz",
+    "note_dem": "DEM Copernicus GLO-30 · malla NISAR 80 m",
+    "b1": "¿Dónde puede un interferograma NISAR ver moverse una ladera, y dónde no?",
+    "b2": "Una sola observación real sobre La Paz: paso {pass}, del {ref} al {sec}.",
+    "b3": "En la montaña, que el radar no muestre movimiento no significa que no lo haya.",
+    "b3_sub": "A veces el radar, sencillamente, no podía verlo. QHANTAR marca dónde.",
+    "open": "Abrir el mapa",
+    "passport": "Ver el pasaporte de evidencia",
+    "scroll": "Desliza para descender",
+    "pass": {
+      "ascending": "ascendente",
+      "descending": "descendente"
+    },
+    "handover_label": "De la ilustración a los datos reales",
+    "handover_title": "Aquí termina la ilustración.",
+    "handover_body": "Desde aquí, cada imagen es una capa real sobre La Paz, del producto NISAR o del DEM que usa, y cada cifra sale de results.json.",
+    "alt_hillshade": "Relieve sombreado real de La Paz a partir del DEM Copernicus",
+    "beats": {
+      "relief": {
+        "title": "El relieve",
+        "figlabel": "pendiente mediana de los píxeles válidos",
+        "body": "La ladera según el DEM Copernicus GLO-30, llevado a la malla de 80 m del producto. En lo plano no hay dirección cuesta abajo."
+      },
+      "coherence": {
+        "title": "La calidad de la pareja",
+        "figlabel": "coherencia mediana de los píxeles válidos",
+        "body": "Cuánto se parecen las dos pasadas, con 12 días de diferencia. Dice si la señal es fiable. No dice si el radar mira a lo largo de la ladera."
+      },
+      "sens": {
+        "title": "La geometría del radar",
+        "figlabel": "|S| mediano de los píxeles válidos",
+        "body": "|S| es cuánto de un movimiento cuesta abajo caería sobre la línea de visión nativa del producto. No es una medida de movimiento."
+      },
+      "state": {
+        "title": "Los cuatro estados",
+        "figlabel": "del recorte de La Paz es interpretable",
+        "body": "Geometría y calidad se cruzan sin fundirse: cada píxel recibe un estado y el motivo de ese estado."
+      }
+    },
+    "states_title": "Cuatro estados, no una puntuación",
+    "states_lead": "Proporción de píxeles en el recorte de La Paz y en toda la huella del radar.",
+    "col_state": "Estado",
+    "thresholds": "Umbrales: |S| ≥ {s} y coherencia ≥ {c}, configurables. En La Paz, el {f} % es terreno plano (sobre todo el altiplano de El Alto), no un fallo del radar.",
+    "not_title": "Lo que QHANTAR no hace",
+    "note_ai_footer": "La animación de la portada es una ilustración generada con IA (Higgsfield, Kling 4.0); no es un dato.",
+    "close_title": "Una hoja, una observación, toda la procedencia a la vista."
+  },
+  "skip": "Saltar al contenido",
+  "views_label": "Vistas"
 }

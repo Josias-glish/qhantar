@@ -9,7 +9,11 @@
     "passport": "Evidence passport"
   },
   "lang": "Español",
-  "region": { "label": "Area", "lapaz": "La Paz", "scene": "Full scene" },
+  "region": {
+    "label": "Area",
+    "lapaz": "La Paz",
+    "scene": "Full scene"
+  },
   "opacity": "Layer opacity",
   "real_data": "Real NISAR data",
   "mission": {
@@ -131,5 +135,57 @@
     }
   },
   "basemap": "Basemap © OpenStreetMap contributors",
-  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Results come from one NISAR PROVISIONAL product; every number on this page is read from results.json."
+  "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Results come from one NISAR PROVISIONAL product; every number on this page is read from results.json.",
+  "cover": {
+    "hero_label": "Cover: illustrated descent onto an Andean slope",
+    "note_ai": "AI-generated illustration · not data",
+    "note_data": "Real NISAR data · La Paz",
+    "note_dem": "Copernicus GLO-30 DEM · NISAR 80 m grid",
+    "b1": "Where can a NISAR interferogram see a slope move, and where can it not?",
+    "b2": "One real observation over La Paz: {pass} pass, {ref} to {sec}.",
+    "b3": "In the mountains, no motion on the radar does not mean no motion on the ground.",
+    "b3_sub": "Sometimes the radar simply could not see it. QHANTAR marks where.",
+    "open": "Open the map",
+    "passport": "See the evidence passport",
+    "scroll": "Scroll to descend",
+    "pass": {
+      "ascending": "ascending",
+      "descending": "descending"
+    },
+    "handover_label": "From the illustration to the real data",
+    "handover_title": "The illustration ends here.",
+    "handover_body": "From here on, every image is a real layer over La Paz, from the NISAR product or the DEM it is paired with, and every figure comes from results.json.",
+    "alt_hillshade": "Real shaded relief of La Paz from the Copernicus DEM",
+    "beats": {
+      "relief": {
+        "title": "The terrain",
+        "figlabel": "median slope of valid pixels",
+        "body": "The slope from the Copernicus GLO-30 DEM, brought to the product's 80 m grid. Flat ground has no downhill direction."
+      },
+      "coherence": {
+        "title": "The quality of the pair",
+        "figlabel": "median coherence of valid pixels",
+        "body": "How alike the two passes are, 12 days apart. It says whether the signal is reliable. It does not say whether the radar looks along the slope."
+      },
+      "sens": {
+        "title": "The radar geometry",
+        "figlabel": "median |S| of valid pixels",
+        "body": "|S| is how much of a downhill motion would land on the product's native line of sight. It is not a measure of motion."
+      },
+      "state": {
+        "title": "The four states",
+        "figlabel": "of the La Paz crop is interpretable",
+        "body": "Geometry and quality are crossed, never merged: every pixel gets a state and the reason for it."
+      }
+    },
+    "states_title": "Four states, not one score",
+    "states_lead": "Share of pixels in the La Paz crop and in the whole radar footprint.",
+    "col_state": "State",
+    "thresholds": "Thresholds: |S| ≥ {s} and coherence ≥ {c}, both configurable. In La Paz, {f} % is flat ground (mostly the El Alto altiplano), not a radar failure.",
+    "not_title": "What QHANTAR does not do",
+    "note_ai_footer": "The cover animation is an AI-generated illustration (Higgsfield, Kling 4.0); it is not data.",
+    "close_title": "One sheet, one observation, every source in view."
+  },
+  "skip": "Skip to content",
+  "views_label": "Views"
 }

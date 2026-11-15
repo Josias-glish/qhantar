@@ -37,6 +37,8 @@ checkpoints. Everything below was done by Claude:
 - **Reproducibility.** Ran the README commands from a clean clone, which exposed a Windows path-length
   bug that was then fixed. Packaged the ZIP.
 
+- **Cover page and visual redesign.** On the team member's request, used two Claude Code skills (impeccable, 10k-websites) to restyle the site and add a scroll-driven cover. Generated the cover illustration with the **Higgsfield** connector: one start image (GPT Image 2.6) and one 6-second video (Kling 4.0, chosen by the team member), 22.25 credits in total, each price shown before spending. The team member approved the image, the video and the palette. The illustration is labelled as AI-generated on screen and is never used as data.
+
 Claude did **not**:
 
 - validate the results with real users or domain experts;

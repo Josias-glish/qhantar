@@ -99,7 +99,7 @@ G=data/raw/NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T1
 python scripts/process_scene.py $G data/raw/dem        # optional: --s-min --coh-min --slope-min-deg
 python scripts/h1.py $G results/T118_A_F169_20261008_20261020_P05023
 
-# 4. Web app
+# 4. Web app (live: https://qhantar.vercel.app)
 cd web && npm ci && npm run build && npm run preview   # http://localhost:4173
 ```
 
@@ -113,7 +113,7 @@ qhantar/engine.py        geometry, sensitivity, layover/shadow, four-state class
 tests/test_engine.py     analytical tests
 scripts/                 inspect_gunw.py, process_scene.py, h1.py
 results/<scene>/         results.json, La Paz GeoTIFFs (geotiff/), web PNGs (web/)
-web/                     React + TypeScript + Vite + MapLibre static site (ES/EN, 5 views)
+web/                     React + TypeScript + Vite + MapLibre static site (ES/EN): scroll cover + 5 views
 docs/                    method, conventions, decisions, status, H1, pitch, submission, AI usage, screenshots
 docs/master-document.es.md   the team's foundational document (Spanish)
 ```
@@ -128,6 +128,7 @@ docs/master-document.es.md   the team's foundational document (Spanish)
 | H1 | Done: supported, with a steep-slope confound |
 | H2 (R-index contrast), H3 (native LOS vs heading/incidence), H4 (known active zones) | Pending |
 | Web app, 5 views, ES/EN | Done |
+| Web cover (AI illustration, labelled; hands over to real layers) | Done |
 | Validation with real users | Not done |
 
 Evidence for each line: [`docs/STATUS.md`](docs/STATUS.md). Method: [`docs/method.md`](docs/method.md).

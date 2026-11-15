@@ -307,6 +307,8 @@ def main():
         "slope": (nanify(np.degrees(slope), geom_ok), "cividis", (0, 45)),
         "aspect": (nanify(np.degrees(aspect), geom_ok & (slope >= np.deg2rad(a.slope_min_deg))), "twilight", (0, 360)),
         "hillshade": (nanify(hill, geom_ok), "gray", (0, 1)),
+        # used only as a mask by the web cover (contour handover); no figure is read from it
+        "elevation": (nanify(dem_ortho, np.isfinite(dem_ortho)), "gray", (2400.0, 5500.0)),
     }
     for region, bbox, max_px in (("lapaz", LAPAZ_BBOX, None), ("scene", None, 1400)):
         for name, (arr, kind, par) in specs.items():

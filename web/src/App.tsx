@@ -2,15 +2,17 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 import en from "./i18n/en.json";
 import es from "./i18n/es.json";
 import MapView, { type MapLayer } from "./MapView";
+import Cover from "./Cover";
 import type { Results } from "./types";
 
-type Lang = "en" | "es";
-type Dict = typeof en;
-type View = "mission" | "mountain" | "radar" | "observability" | "passport";
+export type Lang = "en" | "es";
+export type Dict = typeof en;
+type View = "cover" | "mission" | "mountain" | "radar" | "observability" | "passport";
 type Region = "lapaz" | "scene";
 
 const DICTS: Record<Lang, Dict> = { en, es };
-const VIEWS: View[] = ["mission", "mountain", "radar", "observability", "passport"];
+const VIEWS = ["mission", "mountain", "radar", "observability", "passport"] as const;
+const ALL_VIEWS: View[] = ["cover", ...VIEWS];
 const DATA = "./data/";
 
 // Colour stops sampled from the matplotlib colormaps used to render the PNGs (scripts/process_scene.py).
@@ -28,8 +30,11 @@ const STATE_KEYS: Record<string, string> = {
 const REASON_KEYS = ["interpretable", "visible_incoherent", "coherent_low_sensitivity", "nodata", "layover", "shadow",
   "flat", "invalid_component", "low_sensitivity_and_low_coherence"];
 
-const pct = (x: number | null | undefined) => (x == null ? "—" : `${(x * 100).toFixed(1)} %`);
-const num = (x: number | null | undefined, d = 3) => (x == null ? "—" : x.toFixed(d));
+// ponytail: module-level locale, set by App before its children render; a context if views ever render outside App.
+let LOC = "en-US";
+const fmt = (x: number, d: number) => x.toLocaleString(LOC, { minimumFractionDigits: d, maximumFractionDigits: d });
+const pct = (x: number | null | undefined) => (x == null ? "—" : `${fmt(x * 100, 1)} %`);
+const num = (x: number | null | undefined, d = 3) => (x == null ? "—" : fmt(x, d));
 const int = (x: number, lang: Lang) => x.toLocaleString(lang === "es" ? "es-BO" : "en-US");
 
 function initialLang(): Lang {
@@ -49,7 +54,7 @@ function ColorBar({ ramp, range, label }: { ramp: string; range: [number, number
     <div className="colorbar">
       <div className="legend-title">{label}</div>
       <div className="bar" style={{ background: `linear-gradient(to right, ${RAMPS[ramp].join(",")})` }} />
-      <div className="bar-ticks"><span>{range[0]}</span><span>{(range[0] + range[1]) / 2}</span><span>{range[1]}</span></div>
+      <div className="bar-ticks"><span>{range[0].toLocaleString(LOC)}</span><span>{((range[0] + range[1]) / 2).toLocaleString(LOC)}</span><span>{range[1].toLocaleString(LOC)}</span></div>
     </div>
   );
 }
@@ -121,7 +126,8 @@ export default function App() {
   const hash = useMemo(() => new URLSearchParams(location.hash.slice(1)), []);
   const pick = <T extends string>(k: string, ok: readonly T[], d: T): T => (ok as readonly string[]).includes(hash.get(k) ?? "") ? (hash.get(k) as T) : d;
   const [lang, setLang] = useState<Lang>(() => pick("lang", ["en", "es"], initialLang()));
-  const [view, setView] = useState<View>(() => pick("view", VIEWS, "mission"));
+  LOC = lang === "es" ? "es-BO" : "en-US";
+  const [view, setView] = useState<View>(() => pick("view", ALL_VIEWS, "cover"));
   const [region, setRegion] = useState<Region>(() => pick("region", ["lapaz", "scene"], "lapaz"));
   const [r, setR] = useState<Results | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -147,12 +153,12 @@ export default function App() {
 
   useEffect(() => {
     const h = new URLSearchParams({ view, lang, region });
-    if (view !== "mission" && view !== "passport") h.set("layer", layerName);
+    if (view !== "cover" && view !== "mission" && view !== "passport") h.set("layer", layerName);
     if (opacity !== 0.85) h.set("op", String(opacity));
     history.replaceState(null, "", `#${h}`);
   }, [view, lang, region, layerName, opacity]);
   const layers: MapLayer[] = useMemo(() => {
-    if (!r || view === "passport") return [];
+    if (!r || view === "passport" || view === "cover") return [];
     const key = `${region}_${layerName}`;
     const out: MapLayer[] = [];
     if (view === "mountain" && terrain !== "hillshade") {
@@ -196,7 +202,7 @@ export default function App() {
     </label>
   );
 
-  const side: Record<Exclude<View, "passport">, ReactNode> = {
+  const side: Record<Exclude<View, "passport" | "cover">, ReactNode> = {
     mission: (
       <>
         <h2>{t.mission.title}</h2>
@@ -215,7 +221,7 @@ export default function App() {
         <p>{t.mountain.body}</p>
         <Choice name="terrain" value={terrain} onChange={setTerrain} options={[
           { v: "hillshade", label: t.mountain.hillshade }, { v: "slope", label: t.mountain.slope }, { v: "aspect", label: t.mountain.aspect }]} />
-        <p className="small">{t.mountain.slope_median}: <strong>{num(r.quality.slope_deg_in_valid.median, 1)}°</strong>. {t.obs.slope_min}: {r.parameters.slope_min_deg}°</p>
+        <p className="small">{t.mountain.slope_median}: <strong>{num(r.quality.slope_deg_in_valid.median, 1)}°</strong>. {t.obs.slope_min}: {num(r.parameters.slope_min_deg, 1)}°</p>
       </>
     ),
     radar: (
@@ -237,9 +243,9 @@ export default function App() {
           { v: "state", label: t.obs.state }, { v: "abs_sensitivity", label: t.obs.sens }, { v: "reason", label: t.obs.reason }]} />
         <h3>{t.obs.thresholds}</h3>
         <dl className="facts compact">
-          <dt>{t.obs.s_min}</dt><dd>{r.parameters.s_min}</dd>
-          <dt>{t.obs.coh_min}</dt><dd>{r.parameters.coh_min}</dd>
-          <dt>{t.obs.slope_min}</dt><dd>{r.parameters.slope_min_deg}</dd>
+          <dt>{t.obs.s_min}</dt><dd>{num(r.parameters.s_min, 1)}</dd>
+          <dt>{t.obs.coh_min}</dt><dd>{num(r.parameters.coh_min, 1)}</dd>
+          <dt>{t.obs.slope_min}</dt><dd>{num(r.parameters.slope_min_deg, 1)}</dd>
         </dl>
         <h3>{t.obs.fractions} — {region === "lapaz" ? t.region.lapaz : t.region.scene}</h3>
         <table>
@@ -256,33 +262,41 @@ export default function App() {
     ),
   };
 
+  const open = (v: string) => { setView(v as View); scrollTo(0, 0); };
+
   return (
-    <div className="app">
-      <header>
-        <div className="brand">
-          <h1>QHANTAR</h1>
+    <div className={`app v-${view}`}>
+      <a className="skip" href="#main">{t.skip}</a>
+      <header className="top">
+        <button className="brand" onClick={() => open("cover")} aria-label={`QHANTAR · ${t.tagline}`}>
+          <span className="mark">QHANTAR</span>
           <span className="tagline">{t.tagline}</span>
-        </div>
-        <span className="badge real">{t.real_data} · {r.provenance.maturity}</span>
+        </button>
+        {view !== "cover" && <span className="badge real">{t.real_data} · {r.provenance.maturity}</span>}
         <button className="lang" onClick={() => setLang(lang === "en" ? "es" : "en")}>{t.lang}</button>
-        <nav aria-label="views">
-          {VIEWS.map((v, i) => (
-            <button key={v} className={v === view ? "on" : ""} aria-current={v === view} onClick={() => setView(v)}>
-              <span className="step">{i + 1}</span>{t.nav[v]}
-            </button>
-          ))}
-        </nav>
+        {view === "cover" && <button className="btn primary sm" onClick={() => open("mission")}>{t.cover.open}</button>}
+        {view !== "cover" && (
+          <nav aria-label={t.views_label}>
+            {VIEWS.map((v, i) => (
+              <button key={v} className={v === view ? "on" : ""} aria-current={v === view} onClick={() => setView(v)}>
+                <span className="step">{i + 1}</span>{t.nav[v]}
+              </button>
+            ))}
+          </nav>
+        )}
       </header>
 
-      {view === "passport" ? (
+      {view === "cover" ? (
+        <Cover r={r} t={t} lang={lang} open={open} />
+      ) : view === "passport" ? (
         <Passport r={r} t={t} lang={lang} />
       ) : (
-        <main className="split">
+        <main id="main" tabIndex={-1} className="split">
           <section className="mapwrap">
-            <MapView layers={layers} fit={fitCorners} label={t.nav[view]} />
+            <MapView layers={layers} fit={fitCorners} label={t.nav[view as Exclude<View, "cover">]} />
             <aside className="legend-dock" aria-live="polite">{legend}</aside>
           </section>
-          <section className="side">
+          <section className="side" key={view}>
             <div className="controls">{regionPicker}{view !== "mission" && opacityPicker}</div>
             {side[view]}
           </section>
@@ -290,7 +304,7 @@ export default function App() {
       )}
       <footer>
         <p>{t.identity}</p>
-        <p className="small">{t.footer} {t.basemap}.</p>
+        <p className="small">{t.footer} {t.basemap}. {t.cover.note_ai_footer}</p>
       </footer>
     </div>
   );
@@ -300,7 +314,7 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
   const p = r.provenance;
   const h = r.h1;
   return (
-    <main className="passport">
+    <main id="main" tabIndex={-1} className="passport">
       <h2>{t.passport.title}</h2>
       <div className="cols">
         <section>
@@ -325,9 +339,9 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
           </dl>
           <h3>{t.passport.params}</h3>
           <dl className="facts compact">
-            <dt>{t.obs.s_min}</dt><dd>{r.parameters.s_min}</dd>
-            <dt>{t.obs.coh_min}</dt><dd>{r.parameters.coh_min}</dd>
-            <dt>{t.obs.slope_min}</dt><dd>{r.parameters.slope_min_deg}</dd>
+            <dt>{t.obs.s_min}</dt><dd>{num(r.parameters.s_min, 1)}</dd>
+            <dt>{t.obs.coh_min}</dt><dd>{num(r.parameters.coh_min, 1)}</dd>
+            <dt>{t.obs.slope_min}</dt><dd>{num(r.parameters.slope_min_deg, 1)}</dd>
             <dt>CC</dt><dd>{r.parameters.connected_component_invalid_value} = invalid</dd>
             <dt>Valid</dt><dd className="small">{r.parameters.validity}</dd>
           </dl>
