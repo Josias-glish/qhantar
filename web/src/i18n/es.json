@@ -70,7 +70,7 @@
     "cc": "Componentes conectados",
     "cc_valid": "Componente ≠ 0",
     "cc_invalid": "Componente 0 (tratado como inválido)",
-    "cc_note": "El valor 0 significa «fuera de todo componente conectado» y se trata como inválido. El archivo no lo dice, pero se desenrolló con SNAPHU, que marca así esos píxeles, y el software ISCE3 de NASA excluye el 0 de los componentes válidos. El archivo solo contiene 0 y 1.",
+    "cc_note": "El valor 0 marca los píxeles que el desenrollado de fase dejó fuera de toda región conectada; QHANTAR los trata como inválidos. El archivo no define el 0: la convención viene de SNAPHU, el programa que desenrolló esta fase, y del software ISCE3 de NASA. En esta escena el archivo solo tiene los valores 0 y 1. El agua no se pinta: la máscara del producto ya la excluye del análisis.",
     "coh_median": "Coherencia mediana de los píxeles válidos"
   },
   "obs": {
@@ -129,7 +129,8 @@
     "h234": "Hipótesis H2 a H4",
     "h2": "Layover y shadow frente a un índice R independiente, κ de Cohen:",
     "h3": "Píxeles que cambian de estado con una aproximación por rumbo e incidencia en vez de la LOS nativa (incidencia constante / por píxel):",
-    "h234_docs": "H4 no tiene un inventario fiable: la precisión de 1 a 10 km del catálogo no permite probarla. Detalles en docs/validation-h2.md, -h3.md y -h4.md.",
+    "h4": "Píxeles sobre los escarpes de deslizamiento mapeados por el municipio de La Paz (GAMLP 2013), interpretables / coherentes poco sensibles / no observables:",
+    "h234_docs": "H4 es contexto, no validación: los escarpes se mapearon en 2013 y no dicen nada del movimiento durante esta pareja. Detalles en docs/validation-h2.md, -h3.md y -h4.md.",
     "groups": {
       "layover_or_shadow": "Layover o shadow",
       "layover_only": "Solo layover",
@@ -137,6 +138,22 @@
       "geometrically_valid": "Geométricamente válidos",
       "context_geometrically_valid_slope_ge_30deg": "Contexto: válidos, pendiente ≥ 30°"
     }
+  },
+  "pv": {
+    "orbit": {
+      "Ascending": "Ascendente",
+      "Descending": "Descendente",
+      "Left": "mira a la izquierda",
+      "Right": "mira a la derecha"
+    },
+    "maturity_note": "PROVISIONAL (CRID {crid}). ASF documenta en P05023 un problema de marcas de tiempo que puede decorrelacionar el InSAR, corregido en P05036; el 2026-11-14 no existía ningún GUNW P05036 sobre La Paz.",
+    "source": "NASA/JPL, NISAR L2 GUNW vía ASF DAAC",
+    "dem": "Copernicus GLO-30 (alturas EGM2008) — {src} ({n} mosaicos, promediados a la malla de 80 m del GUNW)",
+    "dem_vertical": "Convertidas a altura elipsoidal WGS84 con EGM2008 (PROJ) antes de interpolar los cubos de geometría",
+    "cc_label": "Componente conectado",
+    "cc": "{v} = inválido",
+    "valid_label": "Píxel válido",
+    "valid": "Byte bajo de la máscara: los dos dígitos de subfranja > 0 y el dígito de agua = 0; fase, coherencia, DEM y LOS finitos"
   },
   "basemap": "Mapa base © colaboradores de OpenStreetMap",
   "footer": "QHANTAR · NASA Space Apps 2026 · Dancing with the SARs. Los resultados provienen de un único producto NISAR PROVISIONAL; cada cifra de esta página se lee de results.json.",

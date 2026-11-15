@@ -30,5 +30,6 @@ export interface Results {
   };
   h2?: { layover_agreement: { kappa: number }; active_shadow_agreement: { kappa: number }; verdict: string };
   h3?: Record<"A_constant_heading_constant_incidence" | "B_constant_heading_per_pixel_incidence", { state_changed_fraction: number }>;
-  h4?: { status: string; inventory: { name: string; events_in_la_paz_crop: number } };
+  h4?: { status: string; inventory: { name: string; events_in_la_paz_crop: number };
+    gamlp_scarps?: { features: number; scarp_pixels: Record<string, number> } | null };
 }

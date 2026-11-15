@@ -6,7 +6,12 @@ so each event is represented by a disc whose radius is that accuracy. For each d
 the four states (footprint pixels) next to the same shares for the whole La Paz crop. No hypothesis test
 is run: the inventory is too coarse for one, and this is said in the output.
 
-Usage: python scripts/h4.py <GLC export csv> results/<scene folder>
+Second inventory (optional third argument): GAMLP "Mapa de Escarpe de Deslizamiento en el Municipio de La Paz"
+(OMPD 2013, GeoBolivia, MultiLineString). Scarps are rasterised onto the 80 m grid (all touched pixels) and their
+state mix is compared with every footprint pixel inside the scarps' bounding box, raw and reweighted to the same
+slope distribution (5 deg bins). Scarps are 2013 mapping, not 2026 motion: still context, not validation.
+
+Usage: python scripts/h4.py <GLC export csv> results/<scene folder> [<GAMLP scarps geojson>]
 Writes docs/h4-glc-lapaz.csv (the events used) and the key "h4" in results.json.
 """
 import csv
@@ -34,7 +39,42 @@ def shares(st, rs):
     return out
 
 
-def main(csv_path, res_dir):
+def slope_matched_shares(sel, ref, state, slope, width=5.0):
+    """State shares of `ref` pixels reweighted so their slope bins match those of `sel`."""
+    b = np.floor(slope / width)
+    w = np.zeros(state.shape)
+    for k, n in zip(*np.unique(b[sel], return_counts=True)):
+        m = ref & (b == k)
+        if m.any():
+            w[m] = n / m.sum()
+    tot = w[ref].sum()
+    return {n: float(w[ref & (state == s)].sum() / tot) for s, n in STATES.items()}
+
+
+def scarps(path, state, reason, slope, tf):
+    from rasterio.features import rasterize
+    from rasterio.warp import transform_geom
+    raw = Path(path).read_bytes()
+    gj = json.loads(raw)
+    geoms = [transform_geom("EPSG:4326", "EPSG:32719", f["geometry"]) for f in gj["features"]]
+    on = rasterize(((g, 1) for g in geoms), out_shape=state.shape, transform=tf, all_touched=True, dtype="uint8") == 1
+    rows, cols = np.nonzero(on)
+    box = np.zeros_like(on)
+    box[rows.min():rows.max() + 1, cols.min():cols.max() + 1] = True
+    fp = state != 255
+    on &= fp
+    ref = box & fp & ~on
+    return {"name": "GAMLP Mapa de Escarpe de Deslizamiento en el Municipio de La Paz (OMPD 2013)",
+            "source": "GeoBolivia, via the archive.org mirror https://archive.org/download/geobolivia_GobMunicipal."
+                      "escarpe_de_deslizamientowgs84/GobMunicipal:escarpe_de_deslizamientowgs84.geojson",
+            "md5": hashlib.md5(raw).hexdigest(), "features": len(gj["features"]),
+            "scarp_pixels": shares(state[on], reason[on]),
+            "rest_of_bounding_box": shares(state[ref], reason[ref]),
+            "rest_of_bounding_box_slope_matched": slope_matched_shares(on, ref, state, slope),
+            "median_slope_deg": {"scarp_pixels": float(np.nanmedian(slope[on])), "rest_of_bounding_box": float(np.nanmedian(slope[ref]))}}
+
+
+def main(csv_path, res_dir, scarps_path=None):
     raw = Path(csv_path).read_bytes()
     rows = list(csv.DictReader(raw.decode("utf-8").splitlines()))
     ev = [r for r in rows if r["longitude"] and r["latitude"]
@@ -67,6 +107,8 @@ def main(csv_path, res_dir):
             e["state_shares_in_disc"] = shares(state[disc], reason[disc])
         events.append(e)
 
+    slope = read("full", "slope_deg")
+    gamlp = scarps(scarps_path, state, reason, slope, tf) if scarps_path else None
     h4 = {
         "question": "Which QHANTAR states cover the places where landslides in La Paz were reported?",
         "status": "context only, not a validation",
@@ -77,6 +119,7 @@ def main(csv_path, res_dir):
                                   "Geomorphology, doi:10.1016/j.geomorph.2015.03.016"},
         "la_paz_crop_state_shares": shares(crop, crop_reason),
         "events": events,
+        "gamlp_scarps": gamlp,
         "reading": "the catalogue places events with 1 to 10 km uncertainty, while QHANTAR pixels are 80 m; "
                    "a disc of that size covers whole valleys, so its state mix cannot say whether the slope that "
                    "failed was observable",
@@ -93,4 +136,4 @@ def main(csv_path, res_dir):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(*sys.argv[1:4])

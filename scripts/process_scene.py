@@ -303,7 +303,8 @@ def main():
         "abs_sensitivity": (nanify(np.abs(S), footprint & geom_ok), "viridis", (0, 1)),
         "phase": (nanify(g["phase"], np.isfinite(g["phase"])), "RdBu_r", (-24.0, 24.0)),
         "coherence": (nanify(g["coh"], np.isfinite(g["coh"])), "magma", (0, 1)),
-        "connected_components": (nanify(cc_valid.astype(np.float32), footprint), "cat", {0: "#D55E00", 1: "#009E73"}),
+        # water is excluded from the analysis; showing it as "component 0" made lakes look like unwrapping failures
+        "connected_components": (nanify(cc_valid.astype(np.float32), footprint & ~water), "cat", {0: "#D55E00", 1: "#009E73"}),
         "slope": (nanify(np.degrees(slope), geom_ok), "cividis", (0, 45)),
         "aspect": (nanify(np.degrees(aspect), geom_ok & (slope >= np.deg2rad(a.slope_min_deg))), "twilight", (0, 360)),
         "hillshade": (nanify(hill, geom_ok), "gray", (0, 1)),
@@ -326,6 +327,9 @@ def main():
     crid = ident["compositeReleaseId"]
     maturity = {"P": "PROVISIONAL", "X": "BETA", "V": "VALIDATED"}.get(crid[0], "UNKNOWN")
     search = json.loads(Path("docs/search-record.json").read_text())
+    if search.get("fileID") != gid:  # the record describes the first scene; derive the others from ASF's URL pattern
+        coll = f"NISAR_L2_GUNW_{maturity}_V1"
+        search = {"collectionName": coll, "url": f"https://nisar.asf.earthdatacloud.nasa.gov/NISAR/{coll}/{gid}/{gid}.h5"}
     res = {
         "qhantar_version": "0.1.0",
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -337,7 +341,7 @@ def main():
             "doi": ident["productDoi"],
             "crid": crid,
             "maturity": maturity,
-            "maturity_note": "PROVISIONAL (CRID P05023). ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-14.",
+            "maturity_note": f"{maturity} (CRID {crid}). ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-14.",
             "reference_acquisition": [ident["referenceZeroDopplerStartTime"], ident["referenceZeroDopplerEndTime"]],
             "secondary_acquisition": [ident["secondaryZeroDopplerStartTime"], ident["secondaryZeroDopplerEndTime"]],
             "orbit_pass": ident["orbitPassDirection"], "look_direction": ident["lookDirection"],

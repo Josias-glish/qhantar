@@ -41,12 +41,37 @@ reason is the terrain: flat ground, which QHANTAR marks as not observable, cover
 (mostly the El Alto altiplano) but only 5.1 % (event 3151), 16.1 % (1457) and 1.2 % (10773) of those discs,
 which sit on the steep valley sides of the city. That is a statement about terrain, not about landslides.
 
-A real H4 needs mapped landslide outlines for La Paz, for example from the municipal risk maps or a
-published inventory, ideally of slopes active around October 2026.
+A real test of H4 would need outlines of slopes known to be moving around October 2026. The municipal
+scarp map below is the best inventory found, and it gives a more useful picture than the catalogue.
+
+## Second inventory: GAMLP landslide scarps (added 2026-11-15)
+
+The municipality's *Mapa de Escarpe de Deslizamiento en el Municipio de La Paz* (Oficialía Mayor de
+Planificación para el Desarrollo, GAMLP, 2013; published on GeoBolivia, downloaded from its archive.org
+mirror because geo.gob.bo did not resolve; MD5 `6071f5fcfef6994146d8c4a25f482751`) maps 1,026 scarps as lines.
+That is metre-scale mapping, so it can be compared with 80 m pixels. The file is not committed; the
+script takes it as an optional third argument.
+
+The scarps were burned onto the 80 m grid (every pixel a line touches: 2,599 pixels). They are compared
+with all other footprint pixels inside the scarps' bounding box (35,377 pixels), raw and reweighted to the
+same slope distribution (5° bins). Median slope: 15.7° on scarps, 14.9° elsewhere in the box.
+
+| | 1 Interpretable | 2 Visible, incoherent | 3 Coherent, low sens. | 0 Not observable |
+| --- | ---: | ---: | ---: | ---: |
+| Scarp pixels | 61.8 % | 2.4 % | 35.5 % | 0.3 % |
+| Rest of the box | 52.3 % | 6.6 % | 35.0 % | 6.1 % |
+| Rest of the box, same slopes | 54.5 % | 5.7 % | 37.8 % | 2.0 % |
+
+**Reading.** In this ascending pair, the slopes where the municipality mapped landslide scarps are mostly
+observable: 61.8 % interpretable and almost none (0.3 %) not observable. About a third (35.5 %) are coherent
+but have |S| < 0.3, so a downhill motion there would barely show on this line of sight. For those slopes a
+quiet interferogram does **not** mean stability. This answers the question H4 asked (do known active zones
+fall in interpretable or in non-observable areas?) for one geometry. It is still not a validation: the scarps
+date from 2013 and say nothing about motion between 8 and 20 October 2026.
 
 ## What this does not show
 
-- Only this catalogue was used; no municipal or published inventory.
+- The GAMLP scarps are lines from 2013 mapping, not outlines of landslides active in 2026.
 - Events are points with stated accuracy, not landslide outlines.
 - The events predate the 2026 acquisitions, so the pair cannot show those movements.
 - A state mix is not a detection: QHANTAR does not detect landslides.

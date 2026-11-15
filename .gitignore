@@ -8,3 +8,4 @@ web/dist/
 *.zip
 results/*/full/
 .impeccable/review/
+docs/QHANTAR-funcionamiento.html

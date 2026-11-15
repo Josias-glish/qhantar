@@ -7,6 +7,9 @@ import type { Results } from "./types";
 
 export type Lang = "en" | "es";
 export type Dict = typeof en;
+// acquisition [start, stop] as "YYYY-MM-DD hh:mm:ss → hh:mm:ss UTC" (the file stores nanoseconds)
+const span = ([a, b]: string[]) => `${a.slice(0, 10)} ${a.slice(11, 19)} → ${b.slice(11, 19)} UTC`;
+const orb = (t: Dict, k: string) => (t.pv.orbit as Record<string, string>)[k] ?? k;
 type View = "cover" | "mission" | "mountain" | "radar" | "observability" | "passport";
 type Region = "lapaz" | "scene";
 
@@ -112,11 +115,11 @@ function ProductCard({ r, t }: { r: Results; t: Dict }) {
   return (
     <dl className="facts">
       <dt>{t.fields.granule}</dt><dd className="mono">{p.granule}</dd>
-      <dt>{t.fields.reference}</dt><dd>{p.reference_acquisition[0]}</dd>
-      <dt>{t.fields.secondary}</dt><dd>{p.secondary_acquisition[0]}</dd>
+      <dt>{t.fields.reference}</dt><dd>{span(p.reference_acquisition)}</dd>
+      <dt>{t.fields.secondary}</dt><dd>{span(p.secondary_acquisition)}</dd>
       <dt>{t.fields.maturity}</dt><dd><span className="badge">{p.maturity}</span> {p.crid}</dd>
-      <dt>{t.fields.orbit}</dt><dd>{p.orbit_pass} / {p.look_direction}</dd>
-      <dt>{t.fields.source}</dt><dd>{p.source}</dd>
+      <dt>{t.fields.orbit}</dt><dd>{orb(t, p.orbit_pass)} / {orb(t, p.look_direction)}</dd>
+      <dt>{t.fields.source}</dt><dd>{t.pv.source}</dd>
     </dl>
   );
 }
@@ -321,20 +324,20 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
           <h3>{t.passport.provenance}</h3>
           <dl className="facts">
             <dt>{t.fields.granule}</dt><dd className="mono">{p.granule}</dd>
-            <dt>{t.fields.reference}</dt><dd>{p.reference_acquisition.join(" → ")}</dd>
-            <dt>{t.fields.secondary}</dt><dd>{p.secondary_acquisition.join(" → ")}</dd>
-            <dt>{t.fields.maturity}</dt><dd><span className="badge">{p.maturity}</span><div className="small">{p.maturity_note}</div></dd>
+            <dt>{t.fields.reference}</dt><dd>{span(p.reference_acquisition)}</dd>
+            <dt>{t.fields.secondary}</dt><dd>{span(p.secondary_acquisition)}</dd>
+            <dt>{t.fields.maturity}</dt><dd><span className="badge">{p.maturity}</span><div className="small">{t.pv.maturity_note.replace("{crid}", p.crid)}</div></dd>
             <dt>{t.fields.crid}</dt><dd>{p.crid}</dd>
-            <dt>{t.fields.orbit}</dt><dd>{p.orbit_pass} / {p.look_direction}</dd>
+            <dt>{t.fields.orbit}</dt><dd>{orb(t, p.orbit_pass)} / {orb(t, p.look_direction)}</dd>
             <dt>{t.fields.track_frame}</dt><dd>{p.track} / {p.frame}</dd>
             <dt>{t.fields.pol}</dt><dd>{p.frequency.join(", ")} / {p.polarization}</dd>
-            <dt>{t.fields.source}</dt><dd>{p.source} — {p.collection}</dd>
+            <dt>{t.fields.source}</dt><dd>{t.pv.source} — {p.collection}</dd>
             <dt>{t.fields.doi}</dt><dd><a href={`https://doi.org/${p.doi}`}>{p.doi}</a></dd>
             <dt>{t.fields.processed}</dt><dd>{p.product_processing_utc}</dd>
             <dt>{t.fields.url}</dt><dd className="mono small">{p.download_url}</dd>
             <dt>{t.fields.grid}</dt><dd>EPSG:{p.grid.epsg}, {p.grid.spacing_m} m, {p.grid.shape.join(" × ")}</dd>
-            <dt>{t.fields.dem}</dt><dd>{p.dem.name} — {p.dem.source} ({p.dem.tiles.length} tiles, {p.dem.resampling})</dd>
-            <dt>{t.fields.dem_vertical}</dt><dd>{p.dem.vertical}</dd>
+            <dt>{t.fields.dem}</dt><dd>{t.pv.dem.replace("{src}", p.dem.source).replace("{n}", String(p.dem.tiles.length))}</dd>
+            <dt>{t.fields.dem_vertical}</dt><dd>{t.pv.dem_vertical}</dd>
             <dt>{t.fields.generated}</dt><dd>{r.generated_utc}</dd>
           </dl>
           <h3>{t.passport.params}</h3>
@@ -342,8 +345,8 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
             <dt>{t.obs.s_min}</dt><dd>{num(r.parameters.s_min, 1)}</dd>
             <dt>{t.obs.coh_min}</dt><dd>{num(r.parameters.coh_min, 1)}</dd>
             <dt>{t.obs.slope_min}</dt><dd>{num(r.parameters.slope_min_deg, 1)}</dd>
-            <dt>CC</dt><dd>{r.parameters.connected_component_invalid_value} = invalid</dd>
-            <dt>Valid</dt><dd className="small">{r.parameters.validity}</dd>
+            <dt>{t.pv.cc_label}</dt><dd>{t.pv.cc.replace("{v}", String(r.parameters.connected_component_invalid_value))}</dd>
+            <dt>{t.pv.valid_label}</dt><dd className="small">{t.pv.valid}</dd>
           </dl>
           <a className="download" href={`${DATA}results.json`} download="results.json">{t.passport.download}</a>
         </section>
@@ -375,7 +378,7 @@ function Passport({ r, t, lang }: { r: Results; t: Dict; lang: Lang }) {
           <dl className="facts compact">
             {r.h2 && <><dt>H2</dt><dd>{t.passport.h2} {num(r.h2.layover_agreement.kappa)} / {num(r.h2.active_shadow_agreement.kappa)} · <span className="badge">{r.h2.verdict}</span></dd></>}
             {r.h3 && <><dt>H3</dt><dd>{t.passport.h3} {pct(r.h3.A_constant_heading_constant_incidence.state_changed_fraction)} / {pct(r.h3.B_constant_heading_per_pixel_incidence.state_changed_fraction)}</dd></>}
-            {r.h4 && <><dt>H4</dt><dd>{r.h4.inventory.name}: {r.h4.inventory.events_in_la_paz_crop} · <span className="badge">{r.h4.status}</span></dd></>}
+            {r.h4 && <><dt>H4</dt><dd>{r.h4.gamlp_scarps && <>{t.passport.h4} {pct(r.h4.gamlp_scarps.scarp_pixels.interpretable)} / {pct(r.h4.gamlp_scarps.scarp_pixels.coherent_low_sensitivity)} / {pct(r.h4.gamlp_scarps.scarp_pixels.not_observable_or_invalid)} · </>}<span className="badge">{r.h4.status}</span></dd></>}
           </dl>
           <p className="note">{t.passport.h234_docs}</p>
         </section>

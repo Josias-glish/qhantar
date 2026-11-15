@@ -70,7 +70,8 @@ But once valid pixels are reweighted to the same slopes, they score 0.510 and 20
 layover/shadow. The difference comes from slope steepness, not from layover or shadow.
 H2: the layover and shadow flags are consistent with an independent R-index (κ 0.880 and 0.838).
 H3: the native LOS changes the state of 3.1 % of the pixels compared with a heading/incidence approximation.
-H4: not testable with the NASA Global Landslide Catalog (4 events, 1 to 10 km location accuracy); reported as context.
+H4 (context, not validation): on the 1,026 landslide scarps mapped by the La Paz municipality in 2013, 61.8 % of pixels are
+interpretable and 0.3 % not observable; the NASA Global Landslide Catalog was too coarse to use.
 
 **What it is not.** It is not a landslide detector, a risk index or a displacement measurement. A
 single 12-day pair cannot reveal slow landslides (5 cm/year ≈ 1.6 mm in 12 days).
@@ -84,6 +85,7 @@ measured quality. We do not claim to be the first.
 - **NISAR L2 Geocoded Unwrapped Interferogram (GUNW), provisional** (NASA/JPL, ASF DAAC), DOI 10.5067/NIL2GUNW-P1.
   - Granule `NISAR_L2_PR_GUNW_032_118_A_169_033_2000_SH_20261008T102402_20261008T102436_20261020T102402_20261020T102436_P05023_N_F_J_001`.
   - Ascending, track 118, frame 169, HH, CRID P05023.
+  - Second granule `NISAR_L2_PR_GUNW_031_097_D_097_032_2000_SH_20260924T224522_20260924T224556_20261006T224522_20261006T224556_P05023_N_F_J_001`: descending, track 97, frame 97, CRID P05023 (two-orbit comparison, `docs/two-orbits.md`).
 
 ## Other data
 
@@ -95,6 +97,7 @@ measured quality. We do not claim to be the first.
 - Repository: https://github.com/Josias-glish/qhantar
 - Web app: https://qhantar.vercel.app (static build of `web/`, hosted on Vercel)
 - Method: `docs/method.md` · H1: `docs/validation-h1.md` · AI usage: `docs/ai-usage.md`
+- Explainer for the jury (Spanish PDF): `docs/QHANTAR-funcionamiento.pdf` · Jury pitch (Spanish): `docs/pitch-jurado.es.md`
 
 ## Tools and AI
 

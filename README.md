@@ -70,12 +70,18 @@ headline gap is a steep-slope effect, not a layover/shadow effect; see [`docs/va
 H2: QHANTAR's layover and shadow flags are consistent with an independent R-index implementation
 (Cohen's κ 0.880 and 0.838; [`docs/validation-h2.md`](docs/validation-h2.md)). H3: replacing the native LOS
 with a heading/incidence approximation changes the state of 3.1 % of the pixels, 1.7 % from the look azimuth
-alone ([`docs/validation-h3.md`](docs/validation-h3.md)). H4: not testable with the NASA Global Landslide
-Catalog, whose 4 events in the crop carry 1 to 10 km location uncertainty; reported as context only
-([`docs/validation-h4.md`](docs/validation-h4.md)).
+alone ([`docs/validation-h3.md`](docs/validation-h3.md)). H4 (context, not validation): the NASA Global Landslide
+Catalog is too coarse (4 events, 1 to 10 km accuracy), but on the 1,026 landslide scarps mapped by the
+La Paz municipality (GAMLP 2013), 61.8 % of pixels are interpretable, 35.5 % coherent but insensitive and
+0.3 % not observable ([`docs/validation-h4.md`](docs/validation-h4.md)).
+
+Two orbits: the same engine on the descending pass (track 97, 2026-09-24 / 2026-10-06) leaves
+39.1 % of the crop interpretable; together with the ascending pass, 54.5 % is interpretable
+from at least one orbit ([`docs/two-orbits.md`](docs/two-orbits.md)).
 
 Every number above is read from
-[`results/T118_A_F169_20261008_20261020_P05023/results.json`](results/T118_A_F169_20261008_20261020_P05023/results.json).
+[`results/T118_A_F169_20261008_20261020_P05023/results.json`](results/T118_A_F169_20261008_20261020_P05023/results.json)
+(two-orbit figures: `results/T097_D_F097_20260924_20261006_P05023/results.json`).
 
 ![Four-state map over La Paz](docs/screenshots/04-observability-en.png)
 
@@ -107,7 +113,12 @@ python scripts/process_scene.py $G data/raw/dem        # optional: --s-min --coh
 python scripts/h1.py $G results/T118_A_F169_20261008_20261020_P05023
 python scripts/h2.py results/T118_A_F169_20261008_20261020_P05023
 python scripts/h3.py $G results/T118_A_F169_20261008_20261020_P05023
-python scripts/h4.py <Global_Landslide_Catalog_Export_rows.csv> results/T118_A_F169_20261008_20261020_P05023   # data.nasa.gov
+python scripts/h4.py <Global_Landslide_Catalog_Export_rows.csv> results/T118_A_F169_20261008_20261020_P05023 [<GAMLP scarps .geojson>]   # data.nasa.gov, GeoBolivia
+
+# optional: descending scene (same URL pattern, NISAR_L2_PR_GUNW_031_097_D_097_..._P05023_N_F_J_001.h5,
+# 2,306,867,200 bytes) with the 12 tiles above plus S16-S19 W067 in its own DEM folder, then
+# python scripts/process_scene.py <descending .h5> <its DEM folder>
+# python scripts/two_orbits.py results/T118_A_F169_20261008_20261020_P05023 results/T097_D_F097_20260924_20261006_P05023
 
 # 4. Web app (live: https://qhantar.vercel.app)
 cd web && npm ci && npm run build && npm run preview   # http://localhost:4173
@@ -121,11 +132,13 @@ report. The processing needs about 4 GB of free RAM and takes several minutes.
 ```
 qhantar/engine.py        geometry, sensitivity, layover/shadow, four-state classification
 tests/test_engine.py     analytical tests
-scripts/                 inspect_gunw.py, process_scene.py, h1.py … h4.py
+scripts/                 inspect_gunw.py, process_scene.py, h1.py … h4.py, two_orbits.py, build_explainer.py
 results/<scene>/         results.json, La Paz GeoTIFFs (geotiff/), web PNGs (web/)
 web/                     React + TypeScript + Vite + MapLibre static site (ES/EN): scroll cover + 5 views
 docs/                    method, conventions, decisions, status, H1, pitch, submission, AI usage, screenshots
 docs/master-document.es.md   the team's foundational document (Spanish)
+docs/QHANTAR-funcionamiento.pdf   explainer for the jury and the public (Spanish), built by scripts/build_explainer.py
+docs/pitch-jurado.es.md      3 min 40 s jury pitch (Spanish)
 ```
 
 ## Status
@@ -138,7 +151,8 @@ docs/master-document.es.md   the team's foundational document (Spanish)
 | H1 | Done: supported unmatched; not supported once slope is matched |
 | H2 (R-index contrast) | Done: consistent (κ 0.880 layover, 0.838 shadow) |
 | H3 (native LOS vs heading/incidence) | Done: 3.1 % of pixels change state |
-| H4 (known active zones) | Not testable with the NASA catalogue; context only |
+| H4 (known active zones) | Context only: NASA catalogue too coarse; GAMLP scarps 61.8 % interpretable, 0.3 % not observable |
+| Descending scene + two-orbit comparison | Done: 54.5 % interpretable from at least one orbit |
 | Web app, 5 views, ES/EN | Done |
 | Web cover (AI illustration, labelled; hands over to real layers) | Done |
 | Validation with real users | Not done |

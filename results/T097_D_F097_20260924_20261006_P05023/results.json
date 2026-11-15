@@ -1,0 +1,854 @@
+{
+ "qhantar_version": "0.1.0",
+ "generated_utc": "2026-11-15T15:02:54Z",
+ "provenance": {
+  "granule": "NISAR_L2_PR_GUNW_031_097_D_097_032_2000_SH_20260924T224522_20260924T224556_20261006T224522_20261006T224556_P05023_N_F_J_001",
+  "source": "NASA/JPL NISAR L2 GUNW via ASF DAAC",
+  "collection": "NISAR_L2_GUNW_PROVISIONAL_V1",
+  "download_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GUNW_PROVISIONAL_V1/NISAR_L2_PR_GUNW_031_097_D_097_032_2000_SH_20260924T224522_20260924T224556_20261006T224522_20261006T224556_P05023_N_F_J_001/NISAR_L2_PR_GUNW_031_097_D_097_032_2000_SH_20260924T224522_20260924T224556_20261006T224522_20261006T224556_P05023_N_F_J_001.h5",
+  "doi": "10.5067/NIL2GUNW-P1",
+  "crid": "P05023",
+  "maturity": "PROVISIONAL",
+  "maturity_note": "PROVISIONAL (CRID P05023). ASF documents a P05023 timestamp issue that can cause InSAR decorrelation, fixed in P05036; no P05036 GUNW existed over La Paz on 2026-11-14.",
+  "reference_acquisition": [
+   "2026-09-24T22:45:22.000000000",
+   "2026-09-24T22:45:56.999342105"
+  ],
+  "secondary_acquisition": [
+   "2026-10-06T22:45:22.000000000",
+   "2026-10-06T22:45:56.999342105"
+  ],
+  "orbit_pass": "Descending",
+  "look_direction": "Left",
+  "track": 97,
+  "frame": 97,
+  "frequency": [
+   "A"
+  ],
+  "polarization": "HH",
+  "product_processing_utc": "2026-10-08T18:03:17",
+  "product_version": "1.0.11",
+  "product_spec_version": "1.5.0",
+  "grid": {
+   "epsg": 32719,
+   "spacing_m": 80.0,
+   "shape": [
+    4041,
+    4158
+   ]
+  },
+  "layers_used": {
+   "phase": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/unwrappedPhase",
+   "coherence": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/coherenceMagnitude",
+   "connected_components": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/HH/connectedComponents",
+   "mask": "/science/LSAR/GUNW/grids/frequencyA/unwrappedInterferogram/mask",
+   "losUnitVectorX": "/science/LSAR/GUNW/metadata/radarGrid/losUnitVectorX",
+   "losUnitVectorY": "/science/LSAR/GUNW/metadata/radarGrid/losUnitVectorY",
+   "incidenceAngle": "/science/LSAR/GUNW/metadata/radarGrid/incidenceAngle"
+  },
+  "dem": {
+   "name": "Copernicus GLO-30 DEM (EGM2008 heights)",
+   "source": "https://copernicus-dem-30m.s3.amazonaws.com/",
+   "tiles": [
+    "Copernicus_DSM_COG_10_S16_00_W067_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S16_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S16_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S16_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W067_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S17_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W067_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S18_00_W070_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W067_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W068_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W069_00_DEM.tif",
+    "Copernicus_DSM_COG_10_S19_00_W070_00_DEM.tif"
+   ],
+   "resampling": "average to the 80 m GUNW grid",
+   "vertical": "converted to WGS84 ellipsoidal height with EGM2008 (PROJ) before interpolating the geometry cubes",
+   "product_dem_for_reference": "Digital Elevation Model (DEM) for the NASA-ISRO NISAR mission, version 1.2, based on the Copernicus DEM 30-m (2023_1), referenced to the WGS84 ellipsoid. This digital elevation model (DEM) was prepare"
+  }
+ },
+ "parameters": {
+  "s_min": 0.3,
+  "coh_min": 0.5,
+  "slope_min_deg": 2.0,
+  "connected_component_invalid_value": 0,
+  "validity": "mask low byte: both subswath digits > 0 and water digit 0; finite phase, coherence, DEM and LOS"
+ },
+ "conventions": {
+  "enu": true,
+  "aspect": "downhill azimuth, clockwise from north",
+  "los": "target to sensor",
+  "S_positive": "downhill motion projects towards the sensor"
+ },
+ "states": {
+  "1": "interpretable",
+  "2": "visible_incoherent",
+  "3": "coherent_low_sensitivity",
+  "0": "not_observable_or_invalid"
+ },
+ "reasons": {
+  "0": "interpretable",
+  "1": "visible_incoherent",
+  "2": "coherent_low_sensitivity",
+  "3": "nodata",
+  "4": "layover",
+  "5": "shadow",
+  "6": "flat",
+  "7": "invalid_component",
+  "8": "low_sensitivity_and_low_coherence"
+ },
+ "colors": {
+  "state": {
+   "0": "#999999",
+   "1": "#0072B2",
+   "2": "#D55E00",
+   "3": "#F0E442"
+  },
+  "reason": {
+   "0": "#0072B2",
+   "1": "#D55E00",
+   "2": "#F0E442",
+   "3": "#000000",
+   "4": "#CC79A7",
+   "5": "#56B4E9",
+   "6": "#E5E5E5",
+   "7": "#009E73",
+   "8": "#7F7F7F"
+  }
+ },
+ "fractions": {
+  "scene_footprint": {
+   "states": {
+    "n_pixels": 8874488,
+    "fractions": {
+     "interpretable": 0.3463636437392219,
+     "visible_incoherent": 0.05963307404325748,
+     "coherent_low_sensitivity": 0.21266714203681383,
+     "not_observable_or_invalid": 0.3813361401807068
+    },
+    "counts": {
+     "interpretable": 3073800,
+     "visible_incoherent": 529213,
+     "coherent_low_sensitivity": 1887312,
+     "not_observable_or_invalid": 3384163
+    }
+   },
+   "reasons": {
+    "n_pixels": 8874488,
+    "fractions": {
+     "interpretable": 0.3463636437392219,
+     "visible_incoherent": 0.05963307404325748,
+     "coherent_low_sensitivity": 0.21266714203681383,
+     "nodata": 0.0492143321394992,
+     "layover": 0.001512199915082425,
+     "shadow": 0.0009824792145755339,
+     "flat": 0.303448604584287,
+     "invalid_component": 0.009976575550048633,
+     "low_sensitivity_and_low_coherence": 0.016201948777213964
+    },
+    "counts": {
+     "interpretable": 3073800,
+     "visible_incoherent": 529213,
+     "coherent_low_sensitivity": 1887312,
+     "nodata": 436752,
+     "layover": 13420,
+     "shadow": 8719,
+     "flat": 2692951,
+     "invalid_component": 88537,
+     "low_sensitivity_and_low_coherence": 143784
+    }
+   }
+  },
+  "la_paz_crop": {
+   "states": {
+    "n_pixels": 420046,
+    "fractions": {
+     "interpretable": 0.39121191488551255,
+     "visible_incoherent": 0.0634287673254834,
+     "coherent_low_sensitivity": 0.22579431776519715,
+     "not_observable_or_invalid": 0.3195650000238069
+    },
+    "counts": {
+     "interpretable": 164327,
+     "visible_incoherent": 26643,
+     "coherent_low_sensitivity": 94844,
+     "not_observable_or_invalid": 134232
+    }
+   },
+   "reasons": {
+    "n_pixels": 420046,
+    "fractions": {
+     "interpretable": 0.39121191488551255,
+     "visible_incoherent": 0.0634287673254834,
+     "coherent_low_sensitivity": 0.22579431776519715,
+     "nodata": 0.0027735057588930737,
+     "layover": 0.0011951072025444833,
+     "shadow": 0.0006570708922356123,
+     "flat": 0.2987982268608676,
+     "invalid_component": 0.0023473619555953395,
+     "low_sensitivity_and_low_coherence": 0.01379372735367079
+    },
+    "counts": {
+     "interpretable": 164327,
+     "visible_incoherent": 26643,
+     "coherent_low_sensitivity": 94844,
+     "nodata": 1165,
+     "layover": 502,
+     "shadow": 276,
+     "flat": 125509,
+     "invalid_component": 986,
+     "low_sensitivity_and_low_coherence": 5794
+    }
+   }
+  }
+ },
+ "quality": {
+  "coherence_in_valid": {
+   "n": 8437736,
+   "min": 0.008276118896901608,
+   "p05": 0.352678082883358,
+   "p25": 0.5994969010353088,
+   "median": 0.7383762001991272,
+   "p75": 0.8553410470485687,
+   "p95": 0.9443475604057312,
+   "max": 0.9951057434082031
+  },
+  "unwrapped_phase_rad_in_valid": {
+   "n": 8437736,
+   "min": -1.2316266298294067,
+   "p05": 5.0837082862854,
+   "p25": 10.880359172821045,
+   "median": 16.690735816955566,
+   "p75": 23.228368759155273,
+   "p95": 29.989323139190674,
+   "max": 37.585960388183594
+  },
+  "abs_S_in_valid": {
+   "n": 8437736,
+   "min": 6.961976153387062e-08,
+   "p05": 0.04513870926745478,
+   "p25": 0.2207565786685265,
+   "median": 0.43042764145883755,
+   "p75": 0.6055672136601666,
+   "p95": 0.8484991139105488,
+   "max": 0.9999994207884562
+  },
+  "slope_deg_in_valid": {
+   "n": 8437736,
+   "min": 0.0,
+   "p05": 0.09043384221983018,
+   "p25": 1.174111702177464,
+   "median": 6.106290597034399,
+   "p75": 18.932742247639275,
+   "p95": 36.10773774501996,
+   "max": 72.76537008341907
+  },
+  "connected_component_values": {
+   "0": 7520401,
+   "1": 9282077
+  },
+  "layover_fraction_of_geometry_ok_footprint": 0.0015128760104244888,
+  "shadow_fraction_of_geometry_ok_footprint": 0.0009834933575886293
+ },
+ "checks": {
+  "los_norm_max_abs_deviation": 5.960464477539063e-08,
+  "los_horizontal_norm_squared_max": 0.5410153865814209,
+  "incidence_from_los_minus_cube_deg": {
+   "n": 8437736,
+   "min": -1.9073486328125e-05,
+   "p05": -7.62939453125e-06,
+   "p25": -7.62939453125e-06,
+   "median": -3.814697265625e-06,
+   "p75": 0.0,
+   "p95": 0.0,
+   "max": 1.1444091796875e-05
+  },
+  "los_horizontal_azimuth_deg": {
+   "n": 8437736,
+   "min": -77.89763641357422,
+   "p05": -77.77413177490234,
+   "p25": -77.5789566040039,
+   "median": -77.32928466796875,
+   "p75": -77.05590057373047,
+   "p95": -76.77590942382812,
+   "max": -76.66222381591797
+  },
+  "flight_heading_from_alongTrack_deg": {
+   "n": 8437736,
+   "min": -169.3788604736328,
+   "p05": -169.27264404296875,
+   "p25": -169.13328552246094,
+   "median": -168.9801025390625,
+   "p75": -168.82778930664062,
+   "p95": -168.69403076171875,
+   "max": -168.6144561767578
+  },
+  "los_azimuth_minus_expected_for_look_side_deg": {
+   "n": 8437736,
+   "min": 1.4696044921875,
+   "p05": 1.489837646484375,
+   "p25": 1.5548553466796875,
+   "median": 1.651031494140625,
+   "p75": 1.77252197265625,
+   "p95": 1.91693115234375,
+   "max": 1.974090576171875
+  },
+  "geoid_N_m": {
+   "n": 27054,
+   "min": 25.093891269574627,
+   "p05": 33.03712609554979,
+   "p25": 43.9418184883538,
+   "median": 44.83495760819049,
+   "p75": 45.849534663698066,
+   "p95": 46.99653685347852,
+   "max": 48.343053487283086
+  },
+  "los_x_change_if_geoid_ignored": {
+   "n": 8437736,
+   "min": 1.5437602996826172e-05,
+   "p05": 1.895427703857422e-05,
+   "p25": 2.2232532501220703e-05,
+   "median": 2.276897430419922e-05,
+   "p75": 2.3066997528076172e-05,
+   "p95": 2.3603439331054688e-05,
+   "max": 2.396106719970703e-05
+  },
+  "dem_finite_fraction_in_footprint": 1.0,
+  "utm_meridian_convergence_deg": {
+   "min": -0.7175792885049016,
+   "max": 0.2429861836274514
+  }
+ },
+ "regions": {
+  "la_paz_crop_bbox_lonlat": [
+   -68.4,
+   -16.75,
+   -67.9,
+   -16.3
+  ]
+ },
+ "web_layers": {
+  "lapaz_state": {
+   "file": "lapaz_state.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_reason": {
+   "file": "lapaz_reason.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_abs_sensitivity": {
+   "file": "lapaz_abs_sensitivity.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "viridis",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "lapaz_phase": {
+   "file": "lapaz_phase.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "RdBu_r",
+   "range": [
+    -24.0,
+    24.0
+   ]
+  },
+  "lapaz_coherence": {
+   "file": "lapaz_coherence.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "magma",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "lapaz_connected_components": {
+   "file": "lapaz_connected_components.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "lapaz_slope": {
+   "file": "lapaz_slope.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "cividis",
+   "range": [
+    0,
+    45
+   ]
+  },
+  "lapaz_aspect": {
+   "file": "lapaz_aspect.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "twilight",
+   "range": [
+    0,
+    360
+   ]
+  },
+  "lapaz_hillshade": {
+   "file": "lapaz_hillshade.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "lapaz_elevation": {
+   "file": "lapaz_elevation.png",
+   "corners": [
+    [
+     -68.4,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.3
+    ],
+    [
+     -67.90035257036017,
+     -16.750199308833537
+    ],
+    [
+     -68.4,
+     -16.750199308833537
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    2400.0,
+    5500.0
+   ]
+  },
+  "scene_state": {
+   "file": "scene_state.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_reason": {
+   "file": "scene_reason.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_abs_sensitivity": {
+   "file": "scene_abs_sensitivity.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "viridis",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_phase": {
+   "file": "scene_phase.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "RdBu_r",
+   "range": [
+    -24.0,
+    24.0
+   ]
+  },
+  "scene_coherence": {
+   "file": "scene_coherence.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "magma",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_connected_components": {
+   "file": "scene_connected_components.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "cat",
+   "range": null
+  },
+  "scene_slope": {
+   "file": "scene_slope.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "cividis",
+   "range": [
+    0,
+    45
+   ]
+  },
+  "scene_aspect": {
+   "file": "scene_aspect.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "twilight",
+   "range": [
+    0,
+    360
+   ]
+  },
+  "scene_hillshade": {
+   "file": "scene_hillshade.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    0,
+    1
+   ]
+  },
+  "scene_elevation": {
+   "file": "scene_elevation.png",
+   "corners": [
+    [
+     -69.76698529771198,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -15.577622282122846
+    ],
+    [
+     -66.61632816753107,
+     -18.512234351948504
+    ],
+    [
+     -69.76698529771198,
+     -18.512234351948504
+    ]
+   ],
+   "colormap": "gray",
+   "range": [
+    2400.0,
+    5500.0
+   ]
+  }
+ },
+ "h1": null,
+ "two_orbits": {
+  "method": "descending state resampled (nearest) to the ascending La Paz crop grid; pixels with a state in both orbits",
+  "n_common_pixels": 420046,
+  "interpretable_both": 0.2009089480675926,
+  "interpretable_ascending_only": 0.15369269080053138,
+  "interpretable_descending_only": 0.19030296681791994,
+  "interpretable_either": 0.5449046056860439,
+  "interpretable_ascending": 0.35460163886812396,
+  "interpretable_descending": 0.39121191488551255,
+  "ascending_sensor_side_es": "este",
+  "descending_sensor_side_es": "oeste",
+  "caveat": "different dates (12-day pairs, two weeks apart): coherence differences mix geometry and time",
+  "reading_es": "Con una sola \u00f3rbita, la ascendente deja interpretable el 35,5 % de estos p\u00edxeles y la descendente el 39,1 %. Sumando las dos se llega al 54,5 %. Las fechas no coinciden, as\u00ed que parte de la diferencia es coherencia y no solo geometr\u00eda."
+ }
+}
