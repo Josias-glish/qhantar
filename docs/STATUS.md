@@ -14,4 +14,5 @@ Only items backed by a command output or a file in this repository are marked do
 | H3 (native LOS vs heading/incidence) | Pending | |
 | H4 (known active zones of La Paz) | Pending | |
 | Web app (5 views, ES/EN) | Done | `npm run build` clean (no TS errors or warnings); built site walked in headless Chromium, 5 views × 2 languages, no console errors; layers land on La Paz (flat El Alto altiplano grey, canyon slopes coloured); every visible number checked by script against `results.json`; captures in `docs/screenshots/` |
+| Documentation and jury material (EN) | Done | `README.md`, `LICENSE` (MIT), `docs/method.md`, `docs/ai-usage.md` (ChatGPT, Antigravity and human-verification sections left for the team), `docs/pitch.md`, `docs/submission.md`; every figure checked by script against `results.json`; literature references checked against NHESS and Crossref |
 | Validation with real users | Not done | |
